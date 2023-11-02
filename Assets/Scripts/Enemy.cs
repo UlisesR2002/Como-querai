@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Entity
 {
     public Material NormalMaterial;
     public Material DamageMaterial;
-    public float HP = 5;
-    float OriginalHP;
     public float DamageStunTime = 0.2f;
     public float DamageTimer = 0.2f;
     public float HitStopTimer = 0.01f;
@@ -22,20 +18,18 @@ public class Enemy : MonoBehaviour
     Material[] mats;
 
     public Animator modelAnimator;
-    // Start is called before the first frame update
-    void Start()
+
+    public override void OnStart()
     {
-        OriginalHP = HP;
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnUpdate()
     {
         if (DamageTimer > 0)
         {
             DamageTimer -= Time.deltaTime;
-            if(Time.timeScale<1)
+            if (Time.timeScale < 1)
             {
                 HitStopTimer -= Time.unscaledDeltaTime;
                 if (HitStopTimer < 0)
@@ -47,27 +41,21 @@ public class Enemy : MonoBehaviour
             {
                 EndDamageFrame();
             }
-            if (HP <= 0)
+            if (hp <= 0)
             {
-                Debug.Log("Cut off "+ (DamageStunTime - DamageTimer) / DamageStunTime);
+                Debug.Log("Cut off " + (DamageStunTime - DamageTimer) / DamageStunTime);
                 if (Mesh != null)
                 {
                     Mesh.material.SetFloat("_Cutoff", (DamageStunTime - DamageTimer) / DamageStunTime);
                 }
-                if(ModelMesh!=null)
+                if (ModelMesh != null)
                 {
                     ModelMesh.materials[0].SetFloat("_Cutoff", (DamageStunTime - DamageTimer) / DamageStunTime);
                 }
             }
         }
-        else if (PlayerMovement.Instance != null)
-        {
-            Vector3 lookAtPos = PlayerMovement.Instance.transform.position;
-            lookAtPos.y = transform.position.y;
-            transform.LookAt(lookAtPos);
-            transform.Rotate(0, 180, 0);
-        }
     }
+
     public void EndDamageFrame()
     {
         DamageTimer = 0;
@@ -77,26 +65,38 @@ public class Enemy : MonoBehaviour
         {
             ModelMesh.material = NormalMaterial;
         }
-        if (HP <= 0)
+        if (hp <= 0)
         {
             Destroy(gameObject);
         }
     }
-    public void ReceiveDamage(float Damage)
+
+    [ContextMenu("Recibir 1 de daño")]
+    public void Damage1()
+    {
+        ReceiveDamage(1);
+    }
+
+    public void ReceiveDamage(int Damage)
     {
         if (DamageTimer > 0)
         {
             return;
         }
-        HP -= Damage;
-        LifeBar.value = HP / OriginalHP;
+
+        GetDamage(Damage);
+
+        LifeBar.value = HpPercentage;
         DamageTimer = DamageStunTime;
         Mesh.material = DamageMaterial;
+
         if (ModelMesh != null)
         {
             ModelMesh.material = DamageMaterial;
         }
-        if (HP > 0) {
+
+        if (hp > 0) 
+        {
             Time.timeScale = 0.2f;
             HitStopTimer = 0.1f;
             animator.SetTrigger("Hit");
@@ -107,18 +107,20 @@ public class Enemy : MonoBehaviour
             PlayerMovement.Instance.ActivateCameraAnimation("Shake");
             DamageTimer = DamageStunTime;
         }
-        else
+    }
+
+
+    public override void OnDead()
+    {
+        HitStopTimer = 0.4f;
+        Time.timeScale = 0.01f;
+        animator.SetTrigger("Die");
+        PlayerMovement.Instance.ActivateCameraAnimation("Zoom");
+        if (modelAnimator != null)
         {
-            HitStopTimer = 0.4f;
-            Time.timeScale = 0.01f;
-            animator.SetTrigger("Die");
-            PlayerMovement.Instance.ActivateCameraAnimation("Zoom");
-            if (modelAnimator != null)
-            {
-                modelAnimator?.SetTrigger("Hit");
-            }
-            DamageStunTime = 3f;
-            DamageTimer = DamageStunTime;
+            modelAnimator?.SetTrigger("Hit");
         }
+        DamageStunTime = 3f;
+        DamageTimer = DamageStunTime;
     }
 }

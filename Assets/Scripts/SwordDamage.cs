@@ -36,7 +36,7 @@ public class SwordDamage : MonoBehaviour
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.ReceiveDamage(0.5f);                
+                enemy.ReceiveDamage(1);                
             }
         }
     }
