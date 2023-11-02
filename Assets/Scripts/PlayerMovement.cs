@@ -8,9 +8,9 @@ public class PlayerMovement : MonoBehaviour
     public float rotSpeed = 100;
     public float jumpForce = 200;
 
+    public float AttackTimer = 0;
     public float ComboTimer = 0;
-    public float AirComboTimer = 0;
-    public Vector3 savedVelocity;
+
 
     public Animator SwordAnimator;
     public Collider checkGroundCollider;
@@ -24,10 +24,15 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator CameraAnimator;
     public Transform CameraTransform;
-    
+
+    public string comboKey;
+    public List<string> combos;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
         Instance = this;
         rg = GetComponent<Rigidbody>(); 
     }
@@ -35,63 +40,43 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 movement = Vector3.zero;
-        if (Input.GetKey(KeyCode.W))
-        {
-            //transform.Translate(0, 0, speed * Time.deltaTime, Space.Self);
-            movement += CameraTransform.forward;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            //transform.Rotate(0, -rotSpeed * Time.deltaTime, 0);
-            movement -= CameraTransform.right;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            //transform.Rotate(0, rotSpeed * Time.deltaTime, 0);
-            movement += CameraTransform.right;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            movement -= CameraTransform.forward;
-        }
         if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
         }
-        movement.y = 0;
-        movement.Normalize();
-        movement *= speed * Time.deltaTime;
-        Quaternion PrevRot = transform.rotation;
-        transform.LookAt(transform.position + movement);
-        Quaternion ObjRot = transform.rotation;
-        transform.rotation = Quaternion.RotateTowards(PrevRot, ObjRot, Time.deltaTime * 1000);
-        
-        transform.position += movement;
+
+        Movement();
+
+
         if (ComboTimer >= 0)
         {
             ComboTimer -= Time.deltaTime;
         }
-        if (AirComboTimer >= 0)
+
+        if (AttackTimer >= 0)
         {
-            AirComboTimer -= Time.deltaTime;
+            AttackTimer -= Time.deltaTime;
         }
-        if (Input.GetMouseButtonDown(0))
+
+        if (ComboTimer < 0)
         {
-            if (ComboTimer <= 0)
+            comboKey = "";
+        }
+
+        if (AttackTimer <= 0)
+        {
+            if (Input.GetMouseButtonDown(0))
             {
-                SwordAnimator.SetTrigger("Attack1");
-                ComboTimer = AirComboTimer = 0.5f;
-                savedVelocity = rg.velocity;
-                swordDamageComponent.ActivateDamage(0.3f);
+                Attack("1");
             }
-            else
+
+            if (Input.GetMouseButtonDown(1))
             {
-                SwordAnimator.SetTrigger("Attack2");
-                AirComboTimer = 0.3f;
-                swordDamageComponent.ActivateDamage(0.2f);
+                Attack("2");
             }
         }
+
+        
         bool canJump = false;
         foreach (Collider groundCollider in groundColliders)
         {
@@ -129,10 +114,106 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void Attack(string AttackID)
+    {
+        comboKey += AttackID;
+
+        //Si esta ruta tiene combo
+        bool comboRoute = false;
+
+        foreach (string combo in combos)
+        {
+            //Suponemos que este combo si tiene ruta
+            bool thisCombo = true;
+
+            for (int i = 0; i < comboKey.Length; i++)
+            {
+                if (combo[i] != comboKey[i])
+                {
+                    //Si no es asi, pasamos al siguente
+                    thisCombo = false;
+                    break;
+                }
+            }
+
+            //si este combo funciona, nos vale, nos salimos
+            if (thisCombo)
+            {
+                comboRoute = true;
+                break;
+            }
+        }
+
+        //Si no tiene combo
+        if (!comboRoute)
+        {
+            //quitamos este movimiento y nos vamos
+            comboKey = comboKey.Substring(0, comboKey.Length - 1);
+            return;
+        }
+
+        //Si este es el ultimo ataque del combo
+        if (comboKey.Length >= 3)
+        {
+            //No se puede atacar por x segundos
+            AttackTimer = 0.6f;
+        }
+
+
+        ComboTimer = 0.5f;
+
+        if (ComboTimer <= 0)
+        {
+            SwordAnimator.SetTrigger("Attack1");
+            swordDamageComponent.ActivateDamage(0.3f);
+        }
+        else
+        {
+            SwordAnimator.SetTrigger("Attack2");
+            swordDamageComponent.ActivateDamage(0.2f);
+        }
+    }
+
+    void Movement()
+    {
+        Vector3 movement = Vector3.zero;
+        if (Input.GetKey(KeyCode.W))
+        {
+            //transform.Translate(0, 0, speed * Time.deltaTime, Space.Self);
+            movement += CameraTransform.forward;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            //transform.Rotate(0, -rotSpeed * Time.deltaTime, 0);
+            movement -= CameraTransform.right;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            //transform.Rotate(0, rotSpeed * Time.deltaTime, 0);
+            movement += CameraTransform.right;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            movement -= CameraTransform.forward;
+        }
+
+        movement.y = 0;
+        movement.Normalize();
+        movement *= speed * Time.deltaTime;
+        Quaternion PrevRot = transform.rotation;
+        transform.LookAt(transform.position + movement);
+        Quaternion ObjRot = transform.rotation;
+        transform.rotation = Quaternion.RotateTowards(PrevRot, ObjRot, Time.deltaTime * 1000);
+
+        transform.position += movement;
+    }
+
     public void ActivateCameraAnimation(string animation)
     {
         CameraAnimator.SetTrigger(animation);
     }
+
+
     private void OnCollisionEnter(Collision collision)
     {
         if (!groundColliders.Contains(collision.collider))
@@ -142,3 +223,4 @@ public class PlayerMovement : MonoBehaviour
         
     }
 }
+
