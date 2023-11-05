@@ -2,37 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    public float speed = 10;
-    public float rotSpeed = 100;
-    public float jumpForce = 200;
-
-    public float AttackTimer = 0;
-    public float ComboTimer = 0;
-
-
+    public static PlayerController Instance;
+    
+    [Header("References")]
     public Animator SwordAnimator;
-    public Collider checkGroundCollider;
-    public List<Collider> groundColliders = new List<Collider>();
-
     public SwordDamage swordDamageComponent;
-
-    Rigidbody rg;
-
-    public static PlayerMovement Instance;
-
     public Animator CameraAnimator;
     public Transform CameraTransform;
 
+    [Header("Movement")]
+    public float speed = 10;
+    public float rotSpeed = 100;
+    public float jumpForce = 200;
+    public LayerMask groundLayer;
+    public bool grounded;
+    private Rigidbody rg;
+
+    [Header("Attack")]
+    public bool blocking;
+    public float AttackTimer = 0;
+    public float ComboTimer = 0;
     public string comboKey;
     public List<string> combos;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = false;
         Instance = this;
         rg = GetComponent<Rigidbody>(); 
     }
@@ -45,8 +44,22 @@ public class PlayerMovement : MonoBehaviour
             Application.Quit();
         }
 
+        grounded = false;
+
+        if (Physics.Raycast(transform.position, Vector3.down, 0.7f, groundLayer))
+        {
+            grounded = true;    
+        }
+
         Movement();
 
+        blocking = false;
+        if (Input.GetKey(KeyCode.E))
+        {
+            blocking = true;
+        }
+
+        SwordAnimator.SetBool("Block", blocking);
 
         if (ComboTimer >= 0)
         {
@@ -76,17 +89,8 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        
-        bool canJump = false;
-        foreach (Collider groundCollider in groundColliders)
-        {
-            if (groundCollider!=null && checkGroundCollider.bounds.Intersects(groundCollider.bounds))
-            {
-                canJump = true;
-                break;
-            }
-        }
-        if (canJump) {         
+        if (grounded) 
+        {         
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Vector3 currentVelocity = rg.velocity;
@@ -94,28 +98,20 @@ public class PlayerMovement : MonoBehaviour
                 rg.velocity = currentVelocity;
             }
         }
-        else
+        else if(rg.velocity.y < 0)
         {
-            /*if (AirComboTimer >= 0)
-            {
-                rg.velocity = Vector3.zero;
-            }
-            else if (savedVelocity.sqrMagnitude > 0)
-            {
-                rg.velocity = savedVelocity;
-                savedVelocity = Vector3.zero;
-            }
-            else */
-            if(rg.velocity.y < 0)
-            {
-                rg.AddForce(100f*rg.mass *Time.deltaTime* Physics.gravity);
-                Debug.Log("Falling Harder");
-            }
+            rg.AddForce(100f*rg.mass *Time.deltaTime* Physics.gravity);
+            Debug.Log("Falling Harder"); 
         }
     }
 
     void Attack(string AttackID)
     {
+        if (blocking)
+        {
+            return;    
+        }
+
         comboKey += AttackID;
 
         //Si esta ruta tiene combo
@@ -162,16 +158,7 @@ public class PlayerMovement : MonoBehaviour
 
         ComboTimer = 0.5f;
 
-        if (ComboTimer <= 0)
-        {
-            SwordAnimator.SetTrigger("Attack1");
-            swordDamageComponent.ActivateDamage(0.3f);
-        }
-        else
-        {
-            SwordAnimator.SetTrigger("Attack2");
-            swordDamageComponent.ActivateDamage(0.2f);
-        }
+        SwordAnimator.SetTrigger(comboKey);
     }
 
     void Movement()
@@ -211,16 +198,6 @@ public class PlayerMovement : MonoBehaviour
     public void ActivateCameraAnimation(string animation)
     {
         CameraAnimator.SetTrigger(animation);
-    }
-
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (!groundColliders.Contains(collision.collider))
-        {
-            groundColliders.Add(collision.collider);
-        }
-        
     }
 }
 

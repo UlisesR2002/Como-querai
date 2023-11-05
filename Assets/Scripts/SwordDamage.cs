@@ -1,43 +1,37 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SwordDamage : MonoBehaviour
 {
-    public float DamageTimer = 0;
+    public bool DoDamage;
+    public List<Enemy> enemiesHitted;
 
-
-    // Start is called before the first frame update
-    void Start()
+    public void ActivateDamage()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (DamageTimer > 0)
-        {
-            DamageTimer -= Time.deltaTime;
-        }
-    }
-    public void ActivateDamage(float newDamageTime)
-    {
-        DamageTimer = newDamageTime;
+        enemiesHitted.Clear();
+        DoDamage = true;
     }
     public void DeactivateDamage()
     {
-        DamageTimer = 0;
+        enemiesHitted.Clear();
+        DoDamage = false;
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (DamageTimer > 0)
+        if (DoDamage && other.gameObject.TryGetComponent(out Enemy e) && !enemiesHitted.Contains(e))
         {
-            Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.ReceiveDamage(1);                
-            }
+            e.ReceiveDamage(1);                
+            enemiesHitted.Add(e);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (DoDamage && other.gameObject.TryGetComponent(out Enemy e) && !enemiesHitted.Contains(e))
+        {
+            e.ReceiveDamage(1);
+            enemiesHitted.Add(e);
         }
     }
 }

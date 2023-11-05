@@ -104,7 +104,7 @@ public class Enemy : Entity
             {
                 modelAnimator?.SetTrigger("Hit");
             }
-            PlayerMovement.Instance.ActivateCameraAnimation("Shake");
+            PlayerController.Instance.ActivateCameraAnimation("Shake");
             DamageTimer = DamageStunTime;
         }
     }
@@ -115,7 +115,7 @@ public class Enemy : Entity
         HitStopTimer = 0.4f;
         Time.timeScale = 0.01f;
         animator.SetTrigger("Die");
-        PlayerMovement.Instance.ActivateCameraAnimation("Zoom");
+        PlayerController.Instance.ActivateCameraAnimation("Zoom");
         if (modelAnimator != null)
         {
             modelAnimator?.SetTrigger("Hit");

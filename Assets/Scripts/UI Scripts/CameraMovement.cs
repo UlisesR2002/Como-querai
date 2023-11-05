@@ -37,7 +37,6 @@ public class CameraMovement : MonoBehaviour
         cameraDistance = Mathf.Clamp(cameraDistance,4,12);
         cameraTransform.localPosition = cameraTransform.localPosition.normalized * cameraDistance;
 
-
         transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, maxSpeed * Time.deltaTime);
         //transform.position = playerTransform.position + distToPlayer;
     }
