@@ -542,6 +542,7 @@ GameObject:
   - component: {fileID: 270162841}
   - component: {fileID: 270162840}
   - component: {fileID: 270162839}
+  - component: {fileID: 270162845}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -577,6 +578,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ad435f7ab1d5841a060833f14904f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHP: 3
+  hp: 0
+  playerAnimator: {fileID: 270162845}
   SwordAnimator: {fileID: 1286010089}
   swordDamageComponent: {fileID: 1327772487}
   CameraAnimator: {fileID: 963194229}
@@ -588,6 +592,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   grounded: 0
+  dashing: 0
+  dashSpeed: 10
   blocking: 0
   AttackTimer: 0
   ComboTimer: 0
@@ -679,6 +685,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &270162845
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270162838}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6d8d848b60a81ae44abf2c331ec98b01, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &309510327
 GameObject:
   m_ObjectHideFlags: 0
@@ -2031,7 +2057,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2074871922}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.68479544
+  m_Size: 0.9724742
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3287,7 +3313,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74f47efee63e524f8bce052a5baa37c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
   DoDamage: 0
+  enemiesHitted: []
 --- !u!1 &1348926177
 GameObject:
   m_ObjectHideFlags: 0

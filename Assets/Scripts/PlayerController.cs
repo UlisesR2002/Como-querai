@@ -1,12 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Entity
 {
     public static PlayerController Instance;
     
     [Header("References")]
+    public Animator playerAnimator;
     public Animator SwordAnimator;
     public SwordDamage swordDamageComponent;
     public Animator CameraAnimator;
@@ -19,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     public bool grounded;
     private Rigidbody rg;
+    public bool dashing;
+    public float dashSpeed = 10;
 
     [Header("Attack")]
     public bool blocking;
@@ -30,14 +33,15 @@ public class PlayerController : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    public override void OnStart()
     {
         Instance = this;
-        rg = GetComponent<Rigidbody>(); 
+        rg = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
+
+    public override void OnUpdate()
     {
         if (Input.GetKey(KeyCode.Escape))
         {
@@ -48,18 +52,19 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(transform.position, Vector3.down, 0.7f, groundLayer))
         {
-            grounded = true;    
+            grounded = true;
         }
 
         Movement();
+        Block();
 
-        blocking = false;
-        if (Input.GetKey(KeyCode.E))
+        if (!swordDamageComponent.DoDamage && !blocking && !dashing && grounded && Input.GetKeyDown(KeyCode.F))
         {
-            blocking = true;
+            playerAnimator.SetTrigger("Dash");
         }
 
-        SwordAnimator.SetBool("Block", blocking);
+
+        #region Timers
 
         if (ComboTimer >= 0)
         {
@@ -75,6 +80,7 @@ public class PlayerController : MonoBehaviour
         {
             comboKey = "";
         }
+        #endregion
 
         if (AttackTimer <= 0)
         {
@@ -88,21 +94,17 @@ public class PlayerController : MonoBehaviour
                 Attack("2");
             }
         }
+    }
 
-        if (grounded) 
-        {         
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Vector3 currentVelocity = rg.velocity;
-                currentVelocity.y = jumpForce;
-                rg.velocity = currentVelocity;
-            }
-        }
-        else if(rg.velocity.y < 0)
+    private void Block()
+    {
+        blocking = false;
+        //Si no estamos haciendo daño, o haciendo un dash
+        if (!swordDamageComponent.DoDamage && !dashing && Input.GetKey(KeyCode.E))
         {
-            rg.AddForce(100f*rg.mass *Time.deltaTime* Physics.gravity);
-            Debug.Log("Falling Harder"); 
+            blocking = true;
         }
+        SwordAnimator.SetBool("Block", blocking);
     }
 
     void Attack(string AttackID)
@@ -184,20 +186,73 @@ public class PlayerController : MonoBehaviour
             movement -= CameraTransform.forward;
         }
 
-        movement.y = 0;
+        float s = speed;
+
+        if (dashing)
+        {
+            movement.Set(0, 0, 0);
+            movement -= CameraTransform.forward;
+            s = dashSpeed;
+        }
+
         movement.Normalize();
-        movement *= speed * Time.deltaTime;
+        movement *= s * Time.deltaTime;
+
         Quaternion PrevRot = transform.rotation;
-        transform.LookAt(transform.position + movement);
+
+        if (dashing)
+        {
+            transform.LookAt(transform.position - movement);
+        }
+        else
+        {
+            transform.LookAt(transform.position + movement);
+        }
+
         Quaternion ObjRot = transform.rotation;
         transform.rotation = Quaternion.RotateTowards(PrevRot, ObjRot, Time.deltaTime * 1000);
 
         transform.position += movement;
+
+        if (grounded)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Vector3 currentVelocity = rg.velocity;
+                currentVelocity.y = jumpForce;
+                rg.velocity = currentVelocity;
+            }
+        }
+        else if (rg.velocity.y < 0)
+        {
+            rg.AddForce(100f * rg.mass * Time.deltaTime * Physics.gravity);
+            Debug.Log("Falling Harder");
+        }
     }
 
     public void ActivateCameraAnimation(string animation)
     {
         CameraAnimator.SetTrigger(animation);
     }
+
+    #region Life
+
+    public override void OnDead()
+    {
+        TransitionController.instance.StartTransition(SceneManager.GetActiveScene().name);
+    }
+
+    #endregion
+
+    #region Event Listener
+    public void StartDashing()
+    {
+        dashing = true;
+    }
+    public void EndDashing()
+    {
+        dashing = false;
+    }
+    #endregion
 }
 

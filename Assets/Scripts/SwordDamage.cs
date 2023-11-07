@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class SwordDamage : MonoBehaviour
 {
+    public int damage;
     public bool DoDamage;
     public List<Enemy> enemiesHitted;
 
-    public void ActivateDamage()
+    public void ActivateDamage(int damage)
     {
         enemiesHitted.Clear();
+        this.damage = damage;
         DoDamage = true;
     }
     public void DeactivateDamage()
@@ -21,7 +23,7 @@ public class SwordDamage : MonoBehaviour
     {
         if (DoDamage && other.gameObject.TryGetComponent(out Enemy e) && !enemiesHitted.Contains(e))
         {
-            e.ReceiveDamage(1);                
+            e.ReceiveDamage(damage);                
             enemiesHitted.Add(e);
         }
     }
@@ -30,7 +32,7 @@ public class SwordDamage : MonoBehaviour
     {
         if (DoDamage && other.gameObject.TryGetComponent(out Enemy e) && !enemiesHitted.Contains(e))
         {
-            e.ReceiveDamage(1);
+            e.ReceiveDamage(damage);
             enemiesHitted.Add(e);
         }
     }

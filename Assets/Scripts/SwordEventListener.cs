@@ -7,10 +7,10 @@ public class SwordEventListener : MonoBehaviour
     public float impulse = 5f;
 
     // Start is called before the first frame update
-    public void StartDamage()
+    public void StartDamage(int damage)
     {
         //Debug.Log("Damage listener");
-        sword.ActivateDamage();
+        sword.ActivateDamage(damage);
     }
 
     // Update is called once per frame
