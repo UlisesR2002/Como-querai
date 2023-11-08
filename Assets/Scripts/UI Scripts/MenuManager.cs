@@ -8,6 +8,7 @@ public class MenuManager : MonoBehaviour
 {
     public void GoToScene(string sceneName)
     {
+        //TransitionController.instance.StartTransition(sceneName);
         SceneManager.LoadScene(sceneName);
     }
 

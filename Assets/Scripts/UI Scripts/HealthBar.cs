@@ -7,20 +7,21 @@ public class HealthBar : MonoBehaviour
 {
     public Slider healthSlider;
     public Slider easeHealSlider;
-    public float maxHealth = 100f;
+    public PlayerController controller;
     public float health;
     private float lerpspeed = 0.05f;
 
     // Start is called before the first frame update
     void Start()
     {
-        health = maxHealth;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(healthSlider.value != health) 
+        health = controller.health;
+        if (healthSlider.value != health) 
         {
             healthSlider.value = health;
         }

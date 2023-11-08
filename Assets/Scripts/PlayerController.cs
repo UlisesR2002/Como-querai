@@ -30,6 +30,9 @@ public class PlayerController : Entity
     public string comboKey;
     public List<string> combos;
 
+    [Header("Caracteristics")]
+    public float maxHealth = 100f;
+    public float health;
 
 
     // Start is called before the first frame update
@@ -37,6 +40,7 @@ public class PlayerController : Entity
     {
         Instance = this;
         rg = GetComponent<Rigidbody>();
+        health = maxHealth;
     }
 
     // Update is called once per frame
@@ -236,6 +240,14 @@ public class PlayerController : Entity
     }
 
     #region Life
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Enemy"))
+        {
+            health -= 10;
+        }
+    }
 
     public override void OnDead()
     {
