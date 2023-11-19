@@ -17,11 +17,12 @@ public class PlayerController : Entity
 
 
     [SerializeField] private float speed;
-
+    public static PlayerController instance;
 
     // Start is called before the first frame update
     private void Awake()
     {
+        instance = this;
         //Initial state
         Cursor.lockState = CursorLockMode.Locked;
     }
