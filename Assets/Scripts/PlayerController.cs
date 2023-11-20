@@ -1,22 +1,32 @@
 using Assets.Scripts;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : Entity
 {
+    [Header("Camera")]
     [SerializeField] private GameObject cameraObject;
     [SerializeField] private Camera cam;
-
     [Range(0, 90), SerializeField] private float cameraMaxUpDown;
     [SerializeField] private float cameraSensibility;
-    [SerializeField] private float fovSensibility;
+    
+    [Header("Animator")]
+    [SerializeField] private Animator camAnimator;
+    [SerializeField] private Animator collAnimator;
 
+    [Header("FOV")]
+    [SerializeField] private float fovSensibility;
     [SerializeField] private float minFOV;
     [SerializeField] private float maxFOV;
 
-
+    [Header("Movement")]
     [SerializeField] private float speed;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private bool crouch;
+
+    [Header("Combat")]
+    [SerializeField] private GunDelayer gunDelayer;
+
     public static PlayerController instance;
 
     // Start is called before the first frame update
@@ -27,14 +37,26 @@ public class PlayerController : Entity
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public override void OnStart(){}
+    public override void OnStart()
+    {
+        gunDelayer = new(1);
+    }
 
     // Update is called once per frame
     public override void OnUpdate()
     {
         MoveAndRotate();
         Shoot();
+        FOV();
 
+        bool crouch = Input.GetKey(KeyCode.C);
+        camAnimator.SetBool("Crouch",crouch);
+        collAnimator.SetBool("Crouch", crouch);
+
+    }
+
+    private void FOV()
+    {
         float oldFOV = cam.fieldOfView;
         oldFOV += -fovSensibility * Input.mouseScrollDelta.y * Time.deltaTime;
         oldFOV = Mathf.Clamp(oldFOV, minFOV, maxFOV);
@@ -43,12 +65,12 @@ public class PlayerController : Entity
 
     private void Shoot()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && gunDelayer.CanShoot())
         {
             Debug.Log("Shoot!");
 
             //Question for timer
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit i, Mathf.Infinity))
+            if (Physics.Raycast(cameraObject.transform.position, cameraObject.transform.forward, out RaycastHit i, Mathf.Infinity))
             {
                 if (i.transform.TryGetComponent(out PlayerController p))
                 {
