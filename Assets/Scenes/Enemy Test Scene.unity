@@ -419,10 +419,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 3
   hp: 0
-  enemyType: 2
+  enemyType: 1
   player: {fileID: 2103469062}
   bullet: {fileID: 3875551599528629013, guid: cd38308f95e174a46a00a6fe64032954, type: 3}
   gun: {fileID: 54589347}
+  explosion: {fileID: 417761080263594737, guid: 7800b8f6b712bfe49bd663eeb3ebe1e4, type: 3}
 --- !u!1 &1009381329
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,6 +538,7 @@ MonoBehaviour:
   player: {fileID: 0}
   bullet: {fileID: 0}
   gun: {fileID: 0}
+  explosion: {fileID: 0}
 --- !u!135 &1298228352
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -653,6 +655,7 @@ MonoBehaviour:
   player: {fileID: 0}
   bullet: {fileID: 0}
   gun: {fileID: 0}
+  explosion: {fileID: 0}
 --- !u!135 &1552413524
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1061,6 +1064,7 @@ MonoBehaviour:
   player: {fileID: 0}
   bullet: {fileID: 0}
   gun: {fileID: 0}
+  explosion: {fileID: 0}
 --- !u!135 &2034728015
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1177,10 +1181,17 @@ MonoBehaviour:
   cam: {fileID: 503592558}
   cameraMaxUpDown: 75
   cameraSensibility: 180
+  camAnimator: {fileID: 0}
+  collAnimator: {fileID: 0}
   fovSensibility: 600
   minFOV: 25
   maxFOV: 60
   speed: 10
+  jumpForce: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  crouch: 0
 --- !u!65 &2103469059
 BoxCollider:
   m_ObjectHideFlags: 0

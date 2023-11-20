@@ -12,6 +12,7 @@ namespace Assets.Scripts
         public Transform player;
         public Rigidbody bullet;
         public Transform gun;
+        public GameObject explosion;
         bool isShoot = false;
 
         public override void OnDead()
@@ -68,6 +69,11 @@ namespace Assets.Scripts
                             {
                                 this.transform.Translate(Vector3.forward * 4f * Time.deltaTime);
                                 this.transform.LookAt(player.transform);
+                            }
+                            else
+                            {
+                                Instantiate(explosion, this.transform.position, Quaternion.identity);
+                                OnDead();
                             }
                             break;
 
