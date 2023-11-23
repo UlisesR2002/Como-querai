@@ -50,7 +50,6 @@ namespace Assets.Scripts
                 
                 if(hit.transform.CompareTag("Player"))
                 {
-                    Debug.Log("Hola");
                     switch (enemyType)
                     {
                         case EnemyType.StayAndShoot:
