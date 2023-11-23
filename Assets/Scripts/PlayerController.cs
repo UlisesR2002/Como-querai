@@ -95,6 +95,11 @@ public class PlayerController : Entity
 
     private void MoveAndRotate()
     {
+        if (Input.GetButton("Jump"))
+        {
+            rb.AddForce(Vector3.up * jumpForce);
+        }
+
         //Camera
         if (Cursor.lockState == CursorLockMode.Locked)
         {
@@ -109,6 +114,7 @@ public class PlayerController : Entity
 
             cameraObject.transform.localRotation = Quaternion.Euler(oldAngle, 0, 0);
         }
+
 
         //Movement
         Vector3 keyboard = new(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
