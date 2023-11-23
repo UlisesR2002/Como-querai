@@ -4,7 +4,10 @@ using UnityEngine;
 public class PlayerController : Entity
 {
     [Header("Camera")]
-    [SerializeField] private GameObject cameraObject;
+    [SerializeField] private Rigidbody rb;
+
+    [Header("Camera")]
+    public GameObject cameraObject;
     [SerializeField] private Camera cam;
     [Range(0, 90), SerializeField] private float cameraMaxUpDown;
     [SerializeField] private float cameraSensibility;
@@ -21,8 +24,11 @@ public class PlayerController : Entity
     [Header("Movement")]
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
+    [SerializeField] private bool grounded;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private bool crouch;
+    [SerializeField] private bool stair;
+    [SerializeField] private float stairSpeed;
 
     [Header("Combat")]
     [SerializeField] private GunDelayer gunDelayer;
@@ -45,6 +51,8 @@ public class PlayerController : Entity
     // Update is called once per frame
     public override void OnUpdate()
     {
+        grounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit _, 1.5f, groundLayer);
+
         MoveAndRotate();
         Shoot();
         FOV();
@@ -104,11 +112,56 @@ public class PlayerController : Entity
 
         //Movement
         Vector3 keyboard = new(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        transform.Translate(speed * Time.deltaTime * keyboard, Space.Self);
+
+        if (stair)
+        {
+            //Si presionamos hacia adelante
+            if (keyboard.z > 0)
+            {
+                //Subimos
+                keyboard.y = stairSpeed * Time.deltaTime;
+                keyboard.z = 0;
+
+            }
+            //Si presionamos hacia abajo y no estamos en el suelo
+            else if (keyboard.z < 0 && !grounded)
+            {
+                keyboard.z = 0;
+                keyboard.y = -stairSpeed * Time.deltaTime;
+            }
+        }
+
+        Vector3 velocity = speed * transform.TransformDirection(keyboard);
+
+        if(!stair)
+            velocity.y = rb.velocity.y; // Preserve the y component to maintain gravity effect
+
+        rb.velocity = velocity;
+        //transform =(speed * Time.deltaTime * keyboard, Space.Self);
+
+        //rb.AddForce(keyboard);
     }
 
     public override void OnDead()
     {
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Stair"))
+        {
+            stair = true;
+            rb.useGravity = false;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Stair"))
+        {
+            stair = false;
+            rb.useGravity = true;
+        }
     }
 }
