@@ -11,8 +11,9 @@ namespace Assets.Scripts
         public EnemyType enemyType;
         private Transform player;
         public Rigidbody bullet;
-        public Transform gun;
+        public Transform gunpivot;
         public GameObject explosion;
+        public GameObject gun;
         bool isShoot = false;
 
         public override void OnDead()
@@ -61,21 +62,37 @@ namespace Assets.Scripts
                             else
                             {
                                 isShoot = true;
-                                //TODO
-                                this.transform.LookAt(player.transform);
+                                Vector3 lookAtDirection = Vector3.ProjectOnPlane(player.position - transform.position, Vector3.up);
+                                this.transform.rotation = Quaternion.LookRotation(lookAtDirection);
                             }
                             break;
 
                         case EnemyType.ChaseAndExplode:
-                            if (distance.magnitude > 2)
+                            // Define una distancia límite para detonar la explosión
+                            float explosionDistanceLimit = 2f;
+
+                            if (distance.magnitude < explosionDistanceLimit)
                             {
-                                this.transform.Translate(Vector3.forward * 4f * Time.deltaTime);
-                                this.transform.LookAt(player.transform);
+
+                                float yDifference = Mathf.Abs(player.position.y - transform.position.y);
+                                float yDifferenceLimit = 2f; 
+
+                                if (yDifference < yDifferenceLimit)
+                                {
+                                    Instantiate(explosion, this.transform.position, Quaternion.identity);
+                                    OnDead();
+                                }
+                                else
+                                {
+                                    Vector3 lookAtDirection = Vector3.ProjectOnPlane(player.position - transform.position, Vector3.up);
+                                    this.transform.rotation = Quaternion.LookRotation(lookAtDirection);
+                                }
                             }
                             else
                             {
-                                Instantiate(explosion, this.transform.position, Quaternion.identity);
-                                OnDead();
+                                this.transform.Translate(Vector3.forward * 4f * Time.deltaTime);
+                                Vector3 lookAtDirection = Vector3.ProjectOnPlane(player.position - transform.position, Vector3.up);
+                                this.transform.rotation = Quaternion.LookRotation(lookAtDirection);
                             }
                             break;
 
@@ -83,13 +100,15 @@ namespace Assets.Scripts
                             if (distance.magnitude > 10)
                             {
                                 isShoot = true;
-                                this.transform.LookAt(player.transform);
+                                Vector3 lookAtDirection = Vector3.ProjectOnPlane(player.position - transform.position, Vector3.up);
+                                this.transform.rotation = Quaternion.LookRotation(lookAtDirection);
                             }
                             else
                             {
                                 isShoot = false;
                                 this.transform.Translate(Vector3.back * 10f * Time.deltaTime);
-                                this.transform.LookAt(player.transform);
+                                Vector3 lookAtDirection = Vector3.ProjectOnPlane(player.position - transform.position, Vector3.up);
+                                this.transform.rotation = Quaternion.LookRotation(lookAtDirection);
                             }
                             break;
                     }
@@ -99,13 +118,21 @@ namespace Assets.Scripts
 
         IEnumerator shoot()
         {
-            yield return new WaitForSeconds (1);
+            yield return new WaitForSeconds(1);
+
             if (isShoot)
             {
-                Rigidbody clone;
-                clone = (Rigidbody)Instantiate(bullet, gun.transform.position, Quaternion.identity);
-                clone.velocity = gun.TransformDirection(Vector3.forward * 15000 * Time.deltaTime);
+                // Genera pequeños cambios aleatorios en la dirección del disparo
+                Vector3 randomOffset = new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(-0.05f, 0.1f), Random.Range(-0.1f, 0.1f));
+
+                // Calcula la dirección del disparo con el offset aleatorio
+                Vector3 shootDirection = (player.position - gunpivot.position).normalized + randomOffset;
+
+                // Instancia el proyectil con la dirección modificada
+                Rigidbody clone = Instantiate(bullet, gunpivot.transform.position, Quaternion.identity);
+                clone.velocity = shootDirection * 15000 * Time.deltaTime;
             }
+
             StartCoroutine(shoot());
         }
 
