@@ -1,10 +1,14 @@
-using Assets.Scripts;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : Entity
 {
     [Header("Camera")]
     [SerializeField] private Rigidbody rb;
+
+    [Header("UI")]
+    [SerializeField] private GameObject canvasPause;
+    public static bool isPaused;
 
     [Header("Camera")]
     public GameObject cameraObject;
@@ -31,13 +35,15 @@ public class PlayerController : Entity
     [SerializeField] private float stairSpeed;
 
     [Header("Combat")]
-    [SerializeField] private GunDelayer gunDelayer;
+    [SerializeField] private GunController activeGun;
+    [SerializeField] private List<GunController> guns;
 
     public static PlayerController instance;
 
     // Start is called before the first frame update
     private void Awake()
     {
+        isPaused = false;
         instance = this;
         //Initial state
         Cursor.lockState = CursorLockMode.Locked;
@@ -45,7 +51,6 @@ public class PlayerController : Entity
 
     public override void OnStart()
     {
-        gunDelayer = new(1);
     }
 
     // Update is called once per frame
@@ -53,14 +58,34 @@ public class PlayerController : Entity
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit _, 1.5f, groundLayer);
 
+
+
         MoveAndRotate();
         Shoot();
+        ChangeWeapon();
         FOV();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            isPaused = !canvasPause.activeSelf;
+            canvasPause.SetActive(isPaused);
+
+            if (isPaused)
+            {
+                Time.timeScale = 0;
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Time.timeScale = 1;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
+
 
         bool crouch = Input.GetKey(KeyCode.C);
         camAnimator.SetBool("Crouch",crouch);
         collAnimator.SetBool("Crouch", crouch);
-
     }
 
     private void FOV()
@@ -73,29 +98,43 @@ public class PlayerController : Entity
 
     private void Shoot()
     {
-        if (Input.GetButton("Fire1") && gunDelayer.CanShoot())
+        if (Input.GetButton("Fire1") && !stair && !isPaused)
         {
-            Debug.Log("Shoot!");
-
-            //Question for timer
             if (Physics.Raycast(cameraObject.transform.position, cameraObject.transform.forward, out RaycastHit i, Mathf.Infinity))
             {
-                if (i.transform.TryGetComponent(out PlayerController p))
-                {
-                    Debug.Log("MySelf???");
-                }
-
-                if (i.transform.TryGetComponent(out EnemyController e))
-                {
-                    e.TakeDamage(1);
-                }
+                activeGun.TryShoot(i.point);
             }
+            else
+            {
+                //Si no encontramos nada disparamos como objetivo hacia algun objeto en 100 unidades
+                Vector3 where = cameraObject.transform.position + cameraObject.transform.forward * 100f;
+                activeGun.TryShoot(where);
+            }
+        }
+    }
+
+    private void ChangeWeapon()
+    {
+        if (Input.GetButtonDown("Fire3") && !isPaused)
+        {
+            int index = guns.IndexOf(activeGun);
+            index++;
+            if (index == guns.Count)
+            {
+                index = 0; 
+            }
+
+            activeGun.gameObject.SetActive(false);
+
+            activeGun = guns[index];
+
+            activeGun.gameObject.SetActive(true);
         }
     }
 
     private void MoveAndRotate()
     {
-        if (Input.GetButton("Jump"))
+        if (Input.GetButton("Jump") && grounded)
         {
             rb.AddForce(Vector3.up * jumpForce);
         }

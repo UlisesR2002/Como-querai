@@ -18,11 +18,10 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.TryGetComponent(out Entity e))
         {
-            Debug.Log("Collision Player");
+            e.TakeDamage(1);
             Destroy(gameObject);
         }
-        Debug.Log("Collision");
     }
 }

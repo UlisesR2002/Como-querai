@@ -157,8 +157,9 @@ MonoBehaviour:
   hp: 0
   enemyType: 2
   bullet: {fileID: 3875551599528629013, guid: cd38308f95e174a46a00a6fe64032954, type: 3}
-  gun: {fileID: 9048790754018409145}
+  gunpivot: {fileID: 3765795154091895511}
   explosion: {fileID: 417761080263594737, guid: 7800b8f6b712bfe49bd663eeb3ebe1e4, type: 3}
+  gun: {fileID: 9048790754018409145}
 --- !u!54 &5994365658937152010
 Rigidbody:
   m_ObjectHideFlags: 0
