@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class TransitionController : MonoBehaviour
 {
-    public static TransitionController instance;
+    public static TransitionController transitionController;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject Panel;
     [SerializeField] private float TransitionTime;
@@ -13,14 +13,14 @@ public class TransitionController : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (transitionController == null)
         {
             //Singleton inicialize
-            instance = this;
+            transitionController = this;
             DontDestroyOnLoad(this);
             LoadingScene = false;
         }
-        else if (instance != this)
+        else if (transitionController != this)
         {
             Destroy(gameObject);
         }
