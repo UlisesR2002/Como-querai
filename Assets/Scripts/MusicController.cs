@@ -3,33 +3,29 @@ using UnityEngine;
 
 public class MusicController : MonoBehaviour
 {
+    [SerializeField] private AudioClip[] musicClip;
     private AudioSource audioSource;
-    private float musicVolume;
-    [SerializeField] private TextMeshProUGUI musicText;
+
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        musicVolume = audioSource.volume;
+        audioSource.clip = GetMusic();
+        audioSource.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
-        musicVolume = Mathf.Clamp(musicVolume, 0f, 1f);
-        audioSource.volume = musicVolume;
-        setVolumeText();
+        audioSource.volume = VolumeManager.Volume;
+        if (!audioSource.isPlaying)
+            Start();
     }
 
-    public void VolumeChange(float volumeDifferences)
+
+    AudioClip GetMusic()
     {
-        musicVolume += volumeDifferences;
+        int i = Random.Range(0, musicClip.Length);
+        return musicClip[i];
     }
-
-    public void setVolumeText()
-    {
-        musicText.text = "Volume %" + Mathf.Round(audioSource.volume*100);
-    }
-
-    
 }

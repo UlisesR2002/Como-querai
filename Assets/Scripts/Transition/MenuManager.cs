@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
@@ -9,6 +7,13 @@ public class MenuManager : MonoBehaviour
         TransitionController.transitionController.StartTransition(sceneName);
         //SceneManager.LoadScene(sceneName);
     }
+
+    public void ReloadScene()
+    {
+        TransitionController.transitionController.StartTransition(SceneManager.GetActiveScene().name);
+    }
+
+
     public void QuitApp()
     {
         Application.Quit();

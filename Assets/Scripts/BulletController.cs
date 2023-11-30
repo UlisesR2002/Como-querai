@@ -1,23 +1,25 @@
+using Assets.Scripts;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
     public int damage = 1;
+    public bool damagePlayer = true;
+
     // Start is called before the first frame update
     void Start()
     {
         Destroy(gameObject, 2.0f);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.TryGetComponent(out Entity e))
+        if (damagePlayer && collision.gameObject.TryGetComponent(out Entity p)) 
+        {
+            p.TakeDamage(damage);
+        }
+
+        if(collision.gameObject.TryGetComponent(out EnemyController e))
         {
             e.TakeDamage(damage);
             Destroy(gameObject);

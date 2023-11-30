@@ -1,5 +1,7 @@
+using Assets;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : Entity
 {
@@ -105,7 +107,12 @@ public class PlayerController : Entity
 
     private void Shoot()
     {
-        if (Input.GetButton("Fire1") && !stair && !isPaused)
+        if (isPaused)
+        {
+            aim = activeGun.OnAim(false, cam);
+            return;
+        }
+        if (Input.GetButton("Fire1") && !stair)
         {
             if (Physics.Raycast(cameraObject.transform.position, cameraObject.transform.forward, out RaycastHit i, Mathf.Infinity))
             {
@@ -192,14 +199,23 @@ public class PlayerController : Entity
             velocity.y = rb.velocity.y; // Preserve the y component to maintain gravity effect
 
         rb.velocity = velocity;
-        //transform =(speed * Time.deltaTime * keyboard, Space.Self);
-
-        //rb.AddForce(keyboard);
     }
 
     public override void OnDead()
     {
-        Destroy(gameObject);
+        Time.timeScale = 0.01f;
+        TransitionController.transitionController.StartTransition(SceneManager.GetActiveScene().name);
+    }
+
+    public void GiveAmmo(string tag, int ammo)
+    {
+        foreach (var gun in guns)
+        {
+            if (gun.gunTag == tag)
+            {
+                gun.ammo += ammo;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -208,6 +224,19 @@ public class PlayerController : Entity
         {
             stair = true;
             rb.useGravity = false;
+        }
+
+        if(other.CompareTag("Ammo"))
+        {
+            if (other.TryGetComponent(out Ammo a))
+            {
+                GiveAmmo(a.tag, a.ammo);
+                Destroy(a.gameObject);
+            }
+            else
+            {
+                Debug.LogError("Municion sin el script de municion!!!");
+            }
         }
     }
 

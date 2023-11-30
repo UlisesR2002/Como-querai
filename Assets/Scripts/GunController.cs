@@ -3,6 +3,7 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     [Header("References")]
+    public string gunTag;
     [SerializeField] private GameObject[] gunModel;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject pivot;
@@ -11,7 +12,7 @@ public class GunController : MonoBehaviour
     [Header("Bullets")]
     [SerializeField] private int bulletDamage;
     [SerializeField] private bool infiniteAmmo;
-    [SerializeField] private float bullets;
+    public float ammo;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float bulletDelay;
 
@@ -32,10 +33,11 @@ public class GunController : MonoBehaviour
     {
         if (delayer.CanShoot())
         {
-            if (bullets <= 0 && !infiniteAmmo)
+            if (ammo <= 0 && !infiniteAmmo)
             {
                 return;
             }
+            ammo--;
 
             Vector3 from = pivot.transform.position;
 
@@ -64,6 +66,7 @@ public class GunController : MonoBehaviour
             if (go.TryGetComponent(out BulletController b))
             {
                 b.damage = bulletDamage;
+                b.damagePlayer = false;
             }
         }
     }
