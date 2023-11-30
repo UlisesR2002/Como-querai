@@ -196,22 +196,6 @@ public class PlayerController : Entity
 
         //rb.AddForce(keyboard);
     }
-    public void CheckPause()
-    {
-        isPaused = !canvasPause.activeSelf;
-        canvasPause.SetActive(isPaused);
-
-        if (isPaused)
-        {
-            Time.timeScale = 0;
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else
-        {
-            Time.timeScale = 1;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-    }
 
     public override void OnDead()
     {
