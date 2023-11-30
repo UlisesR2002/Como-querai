@@ -9,6 +9,10 @@ public class MenuManager : MonoBehaviour
         TransitionController.transitionController.StartTransition(sceneName);
         //SceneManager.LoadScene(sceneName);
     }
+    public void Unpause()
+    {
+        PlayerController.instance.CheckPause();
+    }
     public void QuitApp()
     {
         Application.Quit();
