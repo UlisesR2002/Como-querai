@@ -107,8 +107,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.4742651, y: 0.91477454, z: 1}
-  m_Center: {x: -0.00000047683716, y: 0.45357424, z: 0}
+  m_Size: {x: 0.58, y: 0.91477454, z: 0.579124}
+  m_Center: {x: -0.00000047683716, y: 0.45357424, z: -0.11301732}
 --- !u!114 &1021037820709137873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,9 +124,8 @@ MonoBehaviour:
   maxHP: 3
   hp: 0
   enemyType: 0
-  player: {fileID: 0}
   bullet: {fileID: 3875551599528629013, guid: cd38308f95e174a46a00a6fe64032954, type: 3}
-  gun: {fileID: 6487219181694691121}
+  gunpivot: {fileID: 3101410957297906518}
   explosion: {fileID: 417761080263594737, guid: 7800b8f6b712bfe49bd663eeb3ebe1e4, type: 3}
 --- !u!54 &8405049000585580418
 Rigidbody:
@@ -250,5 +249,10 @@ PrefabInstance:
 --- !u!4 &3101410957297906514 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: fb4303299c8780d47a710c146d4246f9, type: 3}
+  m_PrefabInstance: {fileID: 3101410957297510870}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3101410957297906518 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: fb4303299c8780d47a710c146d4246f9, type: 3}
   m_PrefabInstance: {fileID: 3101410957297510870}
   m_PrefabAsset: {fileID: 0}

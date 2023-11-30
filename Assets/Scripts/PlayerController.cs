@@ -120,7 +120,7 @@ public class PlayerController : Entity
         }
 
         aim = Input.GetButton("Fire2");
-        activeGun.OnAim(aim, cam);
+        aim = activeGun.OnAim(aim, cam);
     }
 
     private void ChangeWeapon()
