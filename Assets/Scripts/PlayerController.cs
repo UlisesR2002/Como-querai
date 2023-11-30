@@ -35,6 +35,7 @@ public class PlayerController : Entity
     [SerializeField] private float stairSpeed;
 
     [Header("Combat")]
+    [SerializeField] private bool aim;
     [SerializeField] private GunController activeGun;
     [SerializeField] private List<GunController> guns;
 
@@ -58,34 +59,40 @@ public class PlayerController : Entity
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit _, 1.5f, groundLayer);
 
-
-
         MoveAndRotate();
         Shoot();
         ChangeWeapon();
-        FOV();
+
+        if (!aim)
+        { 
+            FOV();
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            isPaused = !canvasPause.activeSelf;
-            canvasPause.SetActive(isPaused);
-
-            if (isPaused)
-            {
-                Time.timeScale = 0;
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else
-            {
-                Time.timeScale = 1;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
+            Pause();
         }
-
 
         bool crouch = Input.GetKey(KeyCode.C);
         camAnimator.SetBool("Crouch",crouch);
         collAnimator.SetBool("Crouch", crouch);
+    }
+
+    public void Pause()
+    {
+        isPaused = !canvasPause.activeSelf;
+        canvasPause.SetActive(isPaused);
+
+        if (isPaused)
+        {
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     private void FOV()
@@ -111,6 +118,9 @@ public class PlayerController : Entity
                 activeGun.TryShoot(where);
             }
         }
+
+        aim = Input.GetButton("Fire2");
+        activeGun.OnAim(aim, cam);
     }
 
     private void ChangeWeapon()

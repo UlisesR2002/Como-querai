@@ -43,9 +43,10 @@ public class TransitionController : MonoBehaviour
         //hacemos la transicion
         animator.SetTrigger("Transition");
         //esperamos
-        yield return new WaitForSeconds(TransitionTime);
+        yield return new WaitForSecondsRealtime(TransitionTime);
         //cambiamos
         SceneManager.LoadScene(nextScene);
+        Time.timeScale = 1f;
         //Llamamos a SceneLoaded cuando se termine de cargar
         SceneManager.sceneLoaded += SceneLoaded;
         
@@ -62,7 +63,7 @@ public class TransitionController : MonoBehaviour
         //hacemos la transicion de regreso
         animator.SetTrigger("Transition");
         //esperamos
-        yield return new WaitForSeconds(TransitionTime);
+        yield return new WaitForSecondsRealtime(TransitionTime);
         //Ya no estamos cargando
         Panel.SetActive(false);
         LoadingScene = false;
