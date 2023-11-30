@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
+    public int damage = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +19,7 @@ public class BulletController : MonoBehaviour
     {
         if(collision.gameObject.TryGetComponent(out Entity e))
         {
-            e.TakeDamage(1);
+            e.TakeDamage(damage);
             Destroy(gameObject);
         }
     }

@@ -1,7 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro.Examples;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -13,7 +10,6 @@ namespace Assets.Scripts
         public Rigidbody bullet;
         public Transform gunpivot;
         public GameObject explosion;
-        public GameObject gun;
         bool isShoot = false;
 
         public override void OnDead()
