@@ -13,5 +13,7 @@ public class Cam : MonoBehaviour
         newPosition.y = transform.position.y;
 
         transform.position = newPosition;
+
+        transform.rotation = Quaternion.Euler(90,0,0);   
     }
 }
