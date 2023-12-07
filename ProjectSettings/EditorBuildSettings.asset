@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Enemy Test Scene.unity
     guid: 8d2cf644574c2c64bb000b8823980184
+  - enabled: 1
+    path: Assets/Scenes/Bostezo.unity
+    guid: 233d9c55a9299464c834ead3b9e1bc34
   m_configObjects: {}
