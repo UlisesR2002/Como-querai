@@ -22,6 +22,7 @@ public class BulletController : MonoBehaviour
         if(collision.gameObject.TryGetComponent(out EnemyController e))
         {
             e.TakeDamage(damage);
+            e.GetComponent<MeshRenderer>().material = e.damagematerial;
             Destroy(gameObject);
         }
     }

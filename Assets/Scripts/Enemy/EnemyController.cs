@@ -11,6 +11,8 @@ namespace Assets.Scripts
         public Transform gunpivot;
         public GameObject explosion;
         bool isShoot = false;
+        public Material normalmaterial;
+        public Material damagematerial;
 
         public override void OnDead()
         {
