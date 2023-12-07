@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2703865134316279867}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Camino_O2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23,6 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8072103718673487882}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -30,7 +31,6 @@ Transform:
   m_Children:
   - {fileID: 6971301407810197882}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8738771048897340349
 PrefabInstance:
@@ -87,6 +87,10 @@ PrefabInstance:
     - target: {fileID: 2922537919389942104, guid: 455ae25b03fc9a747bd28e33aa1adda8, type: 3}
       propertyPath: m_Name
       value: Camino_O
+      objectReference: {fileID: 0}
+    - target: {fileID: 2922537919389942104, guid: 455ae25b03fc9a747bd28e33aa1adda8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

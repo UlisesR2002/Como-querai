@@ -89,6 +89,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 42341a3540ac70c4facf9af69443846f, type: 2}
     - {fileID: 11400000, guid: 7b90f4d0252201846bd91e420b463ff8, type: 2}
     - {fileID: 11400000, guid: 61643f41efe2f834398a0c7b7e0dbaba, type: 2}
+    - {fileID: 11400000, guid: 675f8c81c28ca6a4eb2a7839492143b4, type: 2}
+    - {fileID: 11400000, guid: a2ebcb9eb0651124ab66050213611449, type: 2}
+    - {fileID: 11400000, guid: 19177691501093649af57594c5c54e21, type: 2}
+    - {fileID: 11400000, guid: 4464dc2c7894711488f42c3139091d6a, type: 2}
+    - {fileID: 11400000, guid: 6f37099305ad3f840b2d4794334c6fbb, type: 2}
   - type: LBSIdentifierBundle
     items:
     - {fileID: 11400000, guid: 9677f21f7b05c1644aa4ae3ec270eea4, type: 2}
