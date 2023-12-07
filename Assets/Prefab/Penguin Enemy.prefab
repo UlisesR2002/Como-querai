@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d774abed6d91e2645bf32bef90555c49, type: 2}
+  - {fileID: 2100000, guid: 4bc6206bdc7c5144792f63d943f03532, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,6 +127,8 @@ MonoBehaviour:
   bullet: {fileID: 3875551599528629013, guid: cd38308f95e174a46a00a6fe64032954, type: 3}
   gunpivot: {fileID: 3101410957297906518}
   explosion: {fileID: 417761080263594737, guid: 7800b8f6b712bfe49bd663eeb3ebe1e4, type: 3}
+  normalmaterial: {fileID: 2100000, guid: 4bc6206bdc7c5144792f63d943f03532, type: 2}
+  damagematerial: {fileID: 2100000, guid: 79be43e6acd16814f8c559399b26211e, type: 2}
 --- !u!54 &8405049000585580418
 Rigidbody:
   m_ObjectHideFlags: 0
