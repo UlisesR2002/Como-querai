@@ -209,3 +209,7 @@ MonoBehaviour:
   - type: MAPElitesPreset
     items:
     - {fileID: 11400000, guid: b90bb27f581fe354799c9c3b84f44eac, type: 2}
+  - type: TMPro.TMP_FontAsset
+    items:
+    - {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
+    - {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
