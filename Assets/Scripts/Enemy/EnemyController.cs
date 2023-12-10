@@ -149,7 +149,7 @@ namespace Assets.Scripts
             if (isShoot)
             {
                 // Genera pequeños cambios aleatorios en la dirección del disparo
-                Vector3 randomOffset = new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(-0.05f, 0.1f), Random.Range(-0.1f, 0.1f));
+                Vector3 randomOffset = new Vector3(Random.Range(-0.07f, 0.07f), Random.Range(-0.05f, 0.07f), Random.Range(-0.07f, 0.07f));
 
                 // Calcula la dirección del disparo con el offset aleatorio
                 Vector3 shootDirection = (player.position - gunpivot.position).normalized + randomOffset;

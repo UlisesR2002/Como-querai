@@ -7773,7 +7773,6 @@ MonoBehaviour:
   canvasPause: {fileID: 6240975979473028302}
   redSplatterImage: {fileID: 2926699961691240356}
   hurtImage: {fileID: 7884286480620844007}
-  hurtTimer: 0.01
   cameraObject: {fileID: 7850819819264483580}
   cam: {fileID: 4951526566759374954}
   cameraMaxUpDown: 75
@@ -7797,6 +7796,7 @@ MonoBehaviour:
   guns:
   - {fileID: 6624480342899028227}
   - {fileID: 6938998608480890757}
+  regenRate: 0
 --- !u!54 &7554223435787489719
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7947,7 +7947,7 @@ Transform:
   m_GameObject: {fileID: 7850819819264483580}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.199, z: -0.029999733}
+  m_LocalPosition: {x: 0, y: 0.8, z: -0.029999733}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -8,10 +8,10 @@ public abstract class Entity : MonoBehaviour
     public float hp;
     public float HpPercentage { get => (float)hp / (float)maxHP; }
 
-    public virtual void TakeDamage(int dmg = 1)
+    public virtual void TakeDamage(float dmg = 1)
     {
         hp -= dmg;
-        if (hp < 0)
+        if (hp <= 0)
         {
             OnDead();
         }

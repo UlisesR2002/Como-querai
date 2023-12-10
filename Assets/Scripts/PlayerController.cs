@@ -180,11 +180,6 @@ public class PlayerController : Entity
 
     private void MoveAndRotate()
     {
-        if (Input.GetButton("Jump") && grounded)
-        {
-            rb.AddForce(Vector3.up * jumpForce);
-        }
-
         //Camera
         if (Cursor.lockState == CursorLockMode.Locked)
         {
@@ -227,6 +222,11 @@ public class PlayerController : Entity
         if(!stair)
             velocity.y = rb.velocity.y; // Preserve the y component to maintain gravity effect
 
+        if (Input.GetButton("Jump") && grounded && !stair)
+        {
+            velocity.y = jumpForce;
+        }
+
         rb.velocity = velocity;
     }
 
@@ -246,7 +246,6 @@ public class PlayerController : Entity
             }
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Stair"))
