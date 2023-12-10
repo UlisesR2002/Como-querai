@@ -15,9 +15,10 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (damagePlayer && collision.gameObject.TryGetComponent(out Entity p)) 
+        if (damagePlayer && collision.gameObject.TryGetComponent(out PlayerController p)) 
         {
             p.TakeDamage(damage);
+            p.isHurt();
         }
 
         if(collision.gameObject.TryGetComponent(out EnemyController e))

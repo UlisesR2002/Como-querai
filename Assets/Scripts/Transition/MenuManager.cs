@@ -13,6 +13,11 @@ public class MenuManager : MonoBehaviour
         TransitionController.transitionController.StartTransition(SceneManager.GetActiveScene().name);
     }
 
+    public void ChangeActiveGameObject(GameObject obj)
+    {
+        obj.SetActive(!obj.activeSelf);
+    }
+
 
     public void QuitApp()
     {

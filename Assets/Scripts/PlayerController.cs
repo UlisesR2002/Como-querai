@@ -1,7 +1,9 @@
 using Assets;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : Entity
 {
@@ -10,6 +12,8 @@ public class PlayerController : Entity
 
     [Header("UI")]
     [SerializeField] private GameObject canvasPause;
+    [SerializeField] private Image redSplatterImage = null;
+    [SerializeField] private Image hurtImage = null;
     public static bool isPaused;
 
     [Header("Camera")]
@@ -17,7 +21,7 @@ public class PlayerController : Entity
     [SerializeField] private Camera cam;
     [Range(0, 90), SerializeField] private float cameraMaxUpDown;
     [SerializeField] private float cameraSensibility;
-    
+
     [Header("Animator")]
     [SerializeField] private Animator camAnimator;
     [SerializeField] private Animator collAnimator;
@@ -41,6 +45,8 @@ public class PlayerController : Entity
     [SerializeField] private GunController activeGun;
     [SerializeField] private List<GunController> guns;
 
+    [Header("Regen")]
+    [SerializeField] public int regenRate;
     public static PlayerController instance;
 
     // Start is called before the first frame update
@@ -64,9 +70,10 @@ public class PlayerController : Entity
         MoveAndRotate();
         Shoot();
         ChangeWeapon();
+        UpdateHealth();
 
         if (!aim)
-        { 
+        {
             FOV();
         }
 
@@ -76,7 +83,7 @@ public class PlayerController : Entity
         }
 
         bool crouch = Input.GetKey(KeyCode.C);
-        camAnimator.SetBool("Crouch",crouch);
+        camAnimator.SetBool("Crouch", crouch);
         collAnimator.SetBool("Crouch", crouch);
     }
 
@@ -138,7 +145,7 @@ public class PlayerController : Entity
             index++;
             if (index == guns.Count)
             {
-                index = 0; 
+                index = 0;
             }
 
             activeGun.gameObject.SetActive(false);
@@ -147,6 +154,28 @@ public class PlayerController : Entity
 
             activeGun.gameObject.SetActive(true);
         }
+    }
+    public void UpdateHealth()
+    {
+        Color splatterAlpha = redSplatterImage.color;
+        splatterAlpha.a = 1 - HpPercentage;
+        redSplatterImage.color = splatterAlpha;
+
+        if (hp <= maxHP - 0.01f)
+        {
+            hp += Time.deltaTime * regenRate;
+        }
+        else
+        {
+            hp = maxHP;
+        }
+    }
+
+    public void isHurt()
+    {
+        regenRate = 0;
+        StartCoroutine(HurtFlash());
+        StartCoroutine(WaitRegen());
     }
 
     private void MoveAndRotate()
@@ -247,5 +276,18 @@ public class PlayerController : Entity
             stair = false;
             rb.useGravity = true;
         }
+    }
+
+    IEnumerator HurtFlash()
+    {
+        hurtImage.enabled = true;
+        yield return new WaitForSeconds(0.1f);
+        hurtImage.enabled = false;
+    }
+
+    IEnumerator WaitRegen()
+    {
+        yield return new WaitForSeconds(5.0f);
+        regenRate = 1;
     }
 }

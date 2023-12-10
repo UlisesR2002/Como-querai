@@ -5,13 +5,20 @@ namespace Assets.Scripts
 {
     public class EnemyController : Entity
     {
+        [Header("Type Enemy")]
         public EnemyType enemyType;
+
+        [Header("Game Object")]
         private Transform player;
         public Rigidbody bullet;
         public Transform gunpivot;
+
+        [Header("Particles")]
         public GameObject deadparticles;
         public GameObject explosion;
         bool isShoot = false;
+
+        [Header("Materials")]
         public Material normalmaterial;
         public Material damagematerial;
 

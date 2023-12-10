@@ -5,7 +5,7 @@ public abstract class Entity : MonoBehaviour
     [Header("Entity")]
 
     public int maxHP = 3;
-    public int hp;
+    public float hp;
     public float HpPercentage { get => (float)hp / (float)maxHP; }
 
     public virtual void TakeDamage(int dmg = 1)
