@@ -1,4 +1,5 @@
 using Assets.Scripts;
+using System.Collections;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
@@ -22,8 +23,19 @@ public class BulletController : MonoBehaviour
         if(collision.gameObject.TryGetComponent(out EnemyController e))
         {
             e.TakeDamage(damage);
-            e.GetComponent<MeshRenderer>().material = e.damagematerial;
-            Destroy(gameObject);
+            StartCoroutine(ChangeMaterialForDuration(e, e.damagematerial, 0.1f));
+
         }
+    }
+
+    IEnumerator ChangeMaterialForDuration(EnemyController enemy, Material newMaterial, float duration)
+    {
+        enemy.GetComponent<MeshRenderer>().material = newMaterial;
+        yield return new WaitForSeconds(duration);
+        if (enemy != null)
+        {
+            enemy.GetComponent<MeshRenderer>().material = enemy.normalmaterial;
+        }
+        Destroy(gameObject);
     }
 }

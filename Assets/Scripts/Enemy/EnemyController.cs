@@ -9,6 +9,7 @@ namespace Assets.Scripts
         private Transform player;
         public Rigidbody bullet;
         public Transform gunpivot;
+        public GameObject deadparticles;
         public GameObject explosion;
         bool isShoot = false;
         public Material normalmaterial;
@@ -16,6 +17,23 @@ namespace Assets.Scripts
 
         public override void OnDead()
         {
+            gameObject.GetComponent<MeshRenderer>().material = damagematerial;
+            switch (enemyType)
+            {
+                case EnemyType.StayAndShoot:
+                    Instantiate(deadparticles, this.transform.position, Quaternion.identity);
+                    break;
+
+                case EnemyType.ChaseAndExplode:
+                    Instantiate(explosion, this.transform.position, Quaternion.identity);
+                    break;
+
+                case EnemyType.EscapeAndShoot:
+                    Instantiate(deadparticles, this.transform.position, Quaternion.identity);
+                    break;
+            }
+
+
             Destroy(gameObject);
         }
 

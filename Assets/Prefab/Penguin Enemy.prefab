@@ -125,7 +125,8 @@ MonoBehaviour:
   hp: 0
   enemyType: 0
   bullet: {fileID: 3875551599528629013, guid: cd38308f95e174a46a00a6fe64032954, type: 3}
-  gunpivot: {fileID: 3101410957297906518}
+  gunpivot: {fileID: 6487219181694691121}
+  deadparticles: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
   explosion: {fileID: 417761080263594737, guid: 7800b8f6b712bfe49bd663eeb3ebe1e4, type: 3}
   normalmaterial: {fileID: 2100000, guid: 4bc6206bdc7c5144792f63d943f03532, type: 2}
   damagematerial: {fileID: 2100000, guid: 79be43e6acd16814f8c559399b26211e, type: 2}
@@ -251,10 +252,5 @@ PrefabInstance:
 --- !u!4 &3101410957297906514 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: fb4303299c8780d47a710c146d4246f9, type: 3}
-  m_PrefabInstance: {fileID: 3101410957297510870}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &3101410957297906518 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: fb4303299c8780d47a710c146d4246f9, type: 3}
   m_PrefabInstance: {fileID: 3101410957297510870}
   m_PrefabAsset: {fileID: 0}

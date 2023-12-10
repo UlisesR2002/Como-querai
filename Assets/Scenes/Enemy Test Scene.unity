@@ -135,18 +135,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Penguin Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 1021037820709137873, guid: b825fb741f425a1428fee282ce361e16, type: 3}
-      propertyPath: gun
-      value: 
-      objectReference: {fileID: 678074578}
-    - target: {fileID: 1021037820709137873, guid: b825fb741f425a1428fee282ce361e16, type: 3}
-      propertyPath: gunpivot
-      value: 
-      objectReference: {fileID: 678074579}
-    - target: {fileID: 1021037820709137873, guid: b825fb741f425a1428fee282ce361e16, type: 3}
-      propertyPath: enemyType
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2682449863503790917, guid: b825fb741f425a1428fee282ce361e16, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.977184
@@ -187,14 +175,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7137279657826940272, guid: b825fb741f425a1428fee282ce361e16, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7137279657826940272, guid: b825fb741f425a1428fee282ce361e16, type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: d774abed6d91e2645bf32bef90555c49, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -467,16 +447,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ed306dd3d9e6fd49a893a8a27896856, type: 3}
---- !u!1 &678074578 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3839725925725114181, guid: b825fb741f425a1428fee282ce361e16, type: 3}
-  m_PrefabInstance: {fileID: 243603763}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &678074579 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6487219181694691121, guid: b825fb741f425a1428fee282ce361e16, type: 3}
-  m_PrefabInstance: {fileID: 243603763}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1630158723
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,10 +698,6 @@ PrefabInstance:
     - target: {fileID: 3307675393673595253, guid: cd1e35e0b5b5f9148815453e6807db5b, type: 3}
       propertyPath: m_Name
       value: Chicken Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 3307675393673595253, guid: cd1e35e0b5b5f9148815453e6807db5b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
