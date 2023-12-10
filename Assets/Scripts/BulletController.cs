@@ -23,19 +23,9 @@ public class BulletController : MonoBehaviour
         if(collision.gameObject.TryGetComponent(out EnemyController e))
         {
             e.TakeDamage(damage);
-            StartCoroutine(ChangeMaterialForDuration(e, e.damagematerial, 0.1f));
+            e.isHurt();
+            Destroy(gameObject);
 
         }
-    }
-
-    IEnumerator ChangeMaterialForDuration(EnemyController enemy, Material newMaterial, float duration)
-    {
-        enemy.GetComponent<MeshRenderer>().material = newMaterial;
-        yield return new WaitForSeconds(duration);
-        if (enemy != null)
-        {
-            enemy.GetComponent<MeshRenderer>().material = enemy.normalmaterial;
-        }
-        Destroy(gameObject);
     }
 }

@@ -17,7 +17,6 @@ namespace Assets.Scripts
 
         public override void OnDead()
         {
-            gameObject.GetComponent<MeshRenderer>().material = damagematerial;
             switch (enemyType)
             {
                 case EnemyType.StayAndShoot:
@@ -131,6 +130,10 @@ namespace Assets.Scripts
                 }
             }
         }
+        public void isHurt()
+        {
+            StartCoroutine(ChangeMaterialForDuration(0.1f));
+        }
 
         IEnumerator shoot()
         {
@@ -150,6 +153,17 @@ namespace Assets.Scripts
             }
 
             StartCoroutine(shoot());
+        }
+
+        IEnumerator ChangeMaterialForDuration(float duration)
+        {
+            GetComponent<MeshRenderer>().material = damagematerial;
+            yield return new WaitForSeconds(duration);
+            if (hp >= 0)
+            {
+                GetComponent<MeshRenderer>().material = normalmaterial;
+            }
+
         }
 
         public enum EnemyType
