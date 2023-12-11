@@ -160,6 +160,22 @@ PrefabInstance:
       propertyPath: enemyType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1021037820709137873, guid: b825fb741f425a1428fee282ce361e16, type: 3}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 417761080263594737, guid: aa69884f8b3b0174480ce6f4a0d3ac3a, type: 3}
+    - target: {fileID: 2682449863503790917, guid: b825fb741f425a1428fee282ce361e16, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2682449863503790917, guid: b825fb741f425a1428fee282ce361e16, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2682449863503790917, guid: b825fb741f425a1428fee282ce361e16, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2682449863503790917, guid: b825fb741f425a1428fee282ce361e16, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.977184

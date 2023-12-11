@@ -91,13 +91,13 @@ namespace Assets.Scripts
 
                         case EnemyType.ChaseAndExplode:
                             // Define una distancia límite para detonar la explosión
-                            float explosionDistanceLimit = 2f;
+                            float explosionDistanceLimit = 4f;
 
                             if (distance.magnitude < explosionDistanceLimit)
                             {
 
                                 float yDifference = Mathf.Abs(player.position.y - transform.position.y);
-                                float yDifferenceLimit = 2f; 
+                                float yDifferenceLimit = 4f; 
 
                                 if (yDifference < yDifferenceLimit)
                                 {

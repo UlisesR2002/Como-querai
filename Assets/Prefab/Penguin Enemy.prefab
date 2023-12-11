@@ -126,8 +126,8 @@ MonoBehaviour:
   enemyType: 0
   bullet: {fileID: 3875551599528629013, guid: cd38308f95e174a46a00a6fe64032954, type: 3}
   gunpivot: {fileID: 6487219181694691121}
-  deadparticles: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
-  explosion: {fileID: 417761080263594737, guid: 7800b8f6b712bfe49bd663eeb3ebe1e4, type: 3}
+  deadparticles: {fileID: 342046465062090554, guid: 1f56bb541cd500f4ca133a87fefc1bb8, type: 3}
+  explosion: {fileID: 417761080263594737, guid: aa69884f8b3b0174480ce6f4a0d3ac3a, type: 3}
   normalmaterial: {fileID: 2100000, guid: 4bc6206bdc7c5144792f63d943f03532, type: 2}
   damagematerial: {fileID: 2100000, guid: 79be43e6acd16814f8c559399b26211e, type: 2}
 --- !u!54 &8405049000585580418
