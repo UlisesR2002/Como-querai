@@ -15,7 +15,8 @@ public class ExplosionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        SphereCollider collider = GetComponent<SphereCollider>();
+        Destroy(collider, 0.1f);
     }
 
     private void OnCollisionEnter(Collision collision)
