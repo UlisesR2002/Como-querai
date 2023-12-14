@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -707.3095}
-  m_SizeDelta: {x: 1750, y: 1514.6191}
+  m_AnchoredPosition: {x: 0, y: -834.9451}
+  m_SizeDelta: {x: 1750, y: 1769.8904}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &289472071
 MonoBehaviour:
@@ -229,16 +229,25 @@ MonoBehaviour:
     <size=50>by ISI
     Lab
 
+    <size=70>Texture Stone Square
 
-    <color=#3E2852><size=100>Music used
+    <size=50>by GlowFox Games
 
-    <color=white><size=70>Miami
-    Disco
+    <size=70>Textures
+    Battle Arena Red vs Blue
+
+    <size=50>by GlowFox Games
+
+
+    <color=#3E2852><size=100>Music
+    used
+
+    <color=white><size=70>Miami Disco
 
     <size=50>by Perturbator
 
-    <color=white><size=70>Payday 2 Official
-    Soundtrack - #31 The Gauntlet (Assault)
+    <color=white><size=70>Payday
+    2 Official Soundtrack - #31 The Gauntlet (Assault)
 
     <size=50>by Simon Viklund'
   m_isRightToLeft: 0
@@ -436,7 +445,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 996661904}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.0660232
+  m_Size: 0.056500673
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
