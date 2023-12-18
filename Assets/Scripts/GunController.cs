@@ -21,11 +21,20 @@ public class GunController : MonoBehaviour
     [SerializeField] private GameObject aim;
     [SerializeField] private float aimFOV;
 
+    [Header("Audio")]
+    public AudioClip shootMainSound;
+    private AudioSource audioSource;
+
     private GunDelayer delayer;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
         delayer = new(bulletDelay);
     }
 
@@ -57,6 +66,10 @@ public class GunController : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(direction);
 
             GameObject go = Instantiate(bulletPrefab, from, rotation);
+            if (audioSource != null && shootMainSound != null)
+            {
+                audioSource.PlayOneShot(shootMainSound, 1.0f);
+            }
 
             if (go.TryGetComponent(out Rigidbody r))
             {

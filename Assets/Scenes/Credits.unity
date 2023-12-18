@@ -180,76 +180,21 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<color=#3E2852><size=100>Game created by
-
-    <color=white><size=70>Alexander
-    Correa
-
-    Ulises Munoz
-
-
-    <color=#3E2852><size=100>Assets used
-
-    <color=white><size=70>Noize
-    Sport Font
-
-    <size=50>by Alit Design
-
-    <size=70>Animals Free
-
-    <size=50>by
-    ithappy
-
-    <size=70>Explosives Package
-
-    <size=50>by Rem Storms
-
-    <size=70>GLASSOFCOINS
-    - Low Poly FPS pack
-
-    <size=50>by GlassOfCoins
-
-    <size=70>Sci Fi Space
-    Soldier PolygonR
-
-    <size=50>by PolygonR
-
-    <size=70>Simple Particles FX
-    : Toon Effects
-
-    <size=50>by Indian Ocean Assets
-
-    <size=70>Ultimate 10+
-    Shaders
-
-    <size=50>by The Developer
-
-    <size=70>LBS
-
-    <size=50>by ISI
-    Lab
-
-    <size=70>Texture Stone Square
-
-    <size=50>by GlowFox Games
-
-    <size=70>Textures
-    Battle Arena Red vs Blue
-
-    <size=50>by GlowFox Games
-
-
-    <color=#3E2852><size=100>Music
-    used
-
-    <color=white><size=70>Miami Disco
-
-    <size=50>by Perturbator
-
-    <color=white><size=70>Payday
-    2 Official Soundtrack - #31 The Gauntlet (Assault)
-
-    <size=50>by Simon Viklund'
+  m_text: "<color=#3E2852><size=100>Game created by\n<color=white><size=70>Alexander
+    Correa\nUlises Munoz\n\n<color=#3E2852><size=100>Assets used\n<color=white><size=70>Noize
+    Sport Font\n<size=50>by Alit Design\n<size=70>Animals Free\n<size=50>by ithappy\n<size=70>Explosives
+    Package\n<size=50>by Rem Storms\n<size=70>GLASSOFCOINS - Low Poly FPS pack\n<size=50>by
+    GlassOfCoins\n<size=70>Sci Fi Space Soldier PolygonR\n<size=50>by PolygonR\n<size=70>Simple
+    Particles FX : Toon Effects\n<size=50>by Indian Ocean Assets\n<size=70>Ultimate
+    10+ Shaders\n<size=50>by The Developer\n<size=70>LBS\n<size=50>by ISI Lab\n<size=70>Texture
+    Stone Square\n<size=50>by GlowFox Games\n<size=70>Textures Battle Arena Red vs
+    Blue\n<size=50>by GlowFox Games\n\n<color=#3E2852><size=100>Music used\n\n\n<color=white><size=70>Revolution
+    | D\xE4mpfer\n<size=50>by D\xE4mpfer\n<color=white><size=70>Miami Disco\n<size=50>by
+    Perturbator\n<color=white><size=70>Payday 2 Official Soundtrack - #31 The Gauntlet
+    (Assault)\n<size=50>by Simon Viklund\n\n<color=#3E2852><size=100>Sound used\n<color=white><size=70>Sci-fi
+    Guns SFX Pack\n<size=50>by Mikael Vanninen\n<color=white><size=70>Classic Footstep
+    SFX\n<size=50>by Matthew Anett\n<color=white><size=70>Explosion 2\n<size=50>by
+    D4XX"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: da1d026feafe40540b91a80605d7b6ec, type: 2}
   m_sharedMaterial: {fileID: 4434741028820909470, guid: da1d026feafe40540b91a80605d7b6ec, type: 2}
@@ -952,6 +897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b47f5879844b3c45b72665bd36b7da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonClickSound: {fileID: 8300000, guid: d54bd1a42cdb96940ac7ab50f69552ee, type: 3}
 --- !u!114 &1037321312
 MonoBehaviour:
   m_ObjectHideFlags: 0

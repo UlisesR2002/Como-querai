@@ -12,6 +12,7 @@ public class PlayerController : Entity
 
     [Header("UI")]
     [SerializeField] private GameObject canvasPause;
+    [SerializeField] private GameObject canvasControl;
     [SerializeField] private Image redSplatterImage = null;
     [SerializeField] private Image hurtImage = null;
     public static bool isPaused;
@@ -49,6 +50,14 @@ public class PlayerController : Entity
     [SerializeField] public int regenRate;
     public static PlayerController instance;
 
+    [Header("Audio")]
+    public AudioClip walkSound;
+    public AudioClip pauseSound;
+    private AudioSource walkAudioSource;
+    private AudioSource pauseAudioSource;
+    [SerializeField] private float walkVolume = 0.5f;
+
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -56,6 +65,11 @@ public class PlayerController : Entity
         instance = this;
         //Initial state
         Cursor.lockState = CursorLockMode.Locked;
+
+        walkAudioSource = gameObject.AddComponent<AudioSource>();
+        pauseAudioSource = gameObject.AddComponent<AudioSource>();
+        walkAudioSource.volume = walkVolume;
+        walkAudioSource.loop = true;
     }
 
     public override void OnStart()
@@ -86,12 +100,12 @@ public class PlayerController : Entity
         camAnimator.SetBool("Crouch", crouch);
         collAnimator.SetBool("Crouch", crouch);
     }
-
     public void Pause()
     {
+        pauseAudioSource.PlayOneShot(pauseSound);
         isPaused = !canvasPause.activeSelf;
         canvasPause.SetActive(isPaused);
-
+        canvasControl.SetActive(false);
         if (isPaused)
         {
             Time.timeScale = 0;
@@ -121,6 +135,7 @@ public class PlayerController : Entity
         }
         if (Input.GetButton("Fire1") && !stair)
         {
+
             if (Physics.Raycast(cameraObject.transform.position, cameraObject.transform.forward, out RaycastHit i, Mathf.Infinity))
             {
                 activeGun.TryShoot(i.point);
@@ -193,6 +208,7 @@ public class PlayerController : Entity
             oldAngle = Mathf.Clamp(oldAngle, -cameraMaxUpDown, cameraMaxUpDown);
 
             cameraObject.transform.localRotation = Quaternion.Euler(oldAngle, 0, 0);
+
         }
 
 
@@ -228,12 +244,37 @@ public class PlayerController : Entity
         }
 
         rb.velocity = velocity;
+        PlaySound();
     }
 
     public override void OnDead()
     {
         Time.timeScale = 0.01f;
         TransitionController.transitionController.StartTransition(SceneManager.GetActiveScene().name);
+    }
+
+    public void PlaySound()
+    {
+        if (!isPaused)
+        {
+            // Reproducir sonido de caminar si el jugador se está moviendo hacia adelante o hacia atrás y está en el suelo
+            if (grounded && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && !walkAudioSource.isPlaying)
+            {
+                walkAudioSource.clip = walkSound;
+                walkAudioSource.Play();
+            }
+            else if (!grounded || (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0))
+            {
+                // Detener el sonido si no está en el suelo o no se está moviendo
+                walkAudioSource.Stop();
+            }
+        }
+        else
+        {
+            // Detener el sonido si el juego está pausado
+            walkAudioSource.Stop();
+        }
+
     }
 
     public void GiveAmmo(string tag, int ammo)

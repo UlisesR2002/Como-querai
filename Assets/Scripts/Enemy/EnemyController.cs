@@ -22,6 +22,10 @@ namespace Assets.Scripts
         public Material normalmaterial;
         public Material damagematerial;
 
+        [Header("Audio")]
+        public AudioClip shootSound;
+        private AudioSource audioSource;
+
         public override void OnDead()
         {
             switch (enemyType)
@@ -31,6 +35,10 @@ namespace Assets.Scripts
                     break;
 
                 case EnemyType.ChaseAndExplode:
+                    if (audioSource != null && shootSound != null)
+                    {
+                        audioSource.PlayOneShot(shootSound, 2.0f);
+                    }
                     Instantiate(explosion, this.transform.position, Quaternion.identity);
                     break;
 
@@ -46,7 +54,12 @@ namespace Assets.Scripts
         public override void OnStart()
         {
             player = PlayerController.instance.transform;
-            switch(enemyType)
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+            }
+            switch (enemyType)
             {
                 case EnemyType.StayAndShoot:
                     StartCoroutine(shoot());
@@ -77,7 +90,7 @@ namespace Assets.Scripts
                     {
                         case EnemyType.StayAndShoot:
 
-                            if (distance.magnitude > 10)
+                            if (distance.magnitude > 15)
                             {
                                 isShoot = false;
                             }
@@ -92,7 +105,6 @@ namespace Assets.Scripts
                         case EnemyType.ChaseAndExplode:
                             // Define una distancia límite para detonar la explosión
                             float explosionDistanceLimit = 4f;
-
                             if (distance.magnitude < explosionDistanceLimit)
                             {
 
@@ -101,7 +113,8 @@ namespace Assets.Scripts
 
                                 if (yDifference < yDifferenceLimit)
                                 {
-                                    Instantiate(explosion, this.transform.position, Quaternion.identity);
+
+                                    //Instantiate(explosion, this.transform.position, Quaternion.identity);
                                     OnDead();
                                 }
                                 else
@@ -157,6 +170,11 @@ namespace Assets.Scripts
                 // Instancia el proyectil con la dirección modificada
                 Rigidbody clone = Instantiate(bullet, gunpivot.transform.position, Quaternion.identity);
                 clone.velocity = shootDirection * 15000 * Time.deltaTime;
+
+                if (audioSource != null && shootSound != null)
+                {
+                    audioSource.PlayOneShot(shootSound, 2.0f);
+                }
             }
 
             StartCoroutine(shoot());

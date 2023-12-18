@@ -14845,6 +14845,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chicken Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6805820771284413509, guid: cd1e35e0b5b5f9148815453e6807db5b, type: 3}
+      propertyPath: m_Volume
+      value: 0.419
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20440,6 +20444,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dog Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4482493970229303630, guid: acea09f04ddfb634489eb4abca7a2071, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cb41a0d789e80aa4982d9d098613c6fe, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -52685,25 +52693,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4951526566759374954, guid: 3ed306dd3d9e6fd49a893a8a27896856, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 119
-      objectReference: {fileID: 0}
-    - target: {fileID: 6818978480086415130, guid: 3ed306dd3d9e6fd49a893a8a27896856, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 7545684336338264235, guid: 3ed306dd3d9e6fd49a893a8a27896856, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 9181532236801731422, guid: 3ed306dd3d9e6fd49a893a8a27896856, type: 3}
-      propertyPath: jumpForce
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9181532236801731422, guid: 3ed306dd3d9e6fd49a893a8a27896856, type: 3}
-      propertyPath: stairSpeed
-      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -64112,7 +64104,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1808200323}
   - component: {fileID: 1808200322}
-  - component: {fileID: 1808200321}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -64120,14 +64111,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1808200321
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1808200320}
-  m_Enabled: 1
 --- !u!20 &1808200322
 Camera:
   m_ObjectHideFlags: 0

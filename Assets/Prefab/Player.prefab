@@ -1004,6 +1004,7 @@ MonoBehaviour:
   aiming: 0
   aim: {fileID: 5868132975200374563}
   aimFOV: 45
+  shootMainSound: {fileID: 8300000, guid: 08f78eba48bb21c44ac5a74ca84efc83, type: 3}
 --- !u!95 &4741873036252292999
 Animator:
   serializedVersion: 5
@@ -2583,6 +2584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b47f5879844b3c45b72665bd36b7da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonClickSound: {fileID: 8300000, guid: d54bd1a42cdb96940ac7ab50f69552ee, type: 3}
 --- !u!1 &2620398413225734040
 GameObject:
   m_ObjectHideFlags: 0
@@ -6318,6 +6320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b47f5879844b3c45b72665bd36b7da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonClickSound: {fileID: 8300000, guid: d54bd1a42cdb96940ac7ab50f69552ee, type: 3}
 --- !u!1 &6245376670791213043
 GameObject:
   m_ObjectHideFlags: 0
@@ -6760,7 +6763,7 @@ GameObject:
   - component: {fileID: 6644748201539084066}
   - component: {fileID: 3089271845424700833}
   - component: {fileID: 2496214566672026615}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7600,6 +7603,7 @@ MonoBehaviour:
   aiming: 0
   aim: {fileID: 0}
   aimFOV: 0
+  shootMainSound: {fileID: 8300000, guid: 92d35fe1c59bbd14eaee9e3d3b54cea7, type: 3}
 --- !u!95 &2501837256715142104
 Animator:
   serializedVersion: 5
@@ -7771,6 +7775,7 @@ MonoBehaviour:
   hp: 0
   rb: {fileID: 7554223435787489719}
   canvasPause: {fileID: 6240975979473028302}
+  canvasControl: {fileID: 2460840504617639270}
   redSplatterImage: {fileID: 2926699961691240356}
   hurtImage: {fileID: 7884286480620844007}
   cameraObject: {fileID: 7850819819264483580}
@@ -7783,20 +7788,23 @@ MonoBehaviour:
   minFOV: 60
   maxFOV: 80
   speed: 10
-  jumpForce: 10
+  jumpForce: 3
   grounded: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   crouch: 0
   stair: 0
-  stairSpeed: 100
+  stairSpeed: 40
   aim: 0
   activeGun: {fileID: 6624480342899028227}
   guns:
   - {fileID: 6624480342899028227}
   - {fileID: 6938998608480890757}
   regenRate: 0
+  walkSound: {fileID: 8300000, guid: 4544cd1f9b0d00a498e3602ecfffcacc, type: 3}
+  pauseSound: {fileID: 8300000, guid: d54bd1a42cdb96940ac7ab50f69552ee, type: 3}
+  walkVolume: 0.5
 --- !u!54 &7554223435787489719
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7994,7 +8002,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 119
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
