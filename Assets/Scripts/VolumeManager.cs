@@ -5,8 +5,15 @@ public class VolumeManager : MonoBehaviour
 {
     public static float Volume = 0.5f;
     public float volume;
+    public AudioClip buttonClickSound;
+    private AudioSource audioSource;
     [SerializeField] private TextMeshProUGUI musicText;
 
+    private void Start()
+    {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+    }
     private void Update()
     {
         volume = Volume;
@@ -15,6 +22,7 @@ public class VolumeManager : MonoBehaviour
 
     public void VolumeChange(float volumeDifference)
     {
+        audioSource.PlayOneShot(buttonClickSound);
         Volume = Mathf.Clamp((Volume + volumeDifference),0f,1f);
     }
 

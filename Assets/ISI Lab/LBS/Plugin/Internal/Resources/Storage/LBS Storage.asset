@@ -217,3 +217,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
     - {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
     - {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+  - type: LBS.BackUp
+    items:
+    - {fileID: 11400000, guid: 8caec97b1799a2949b475a8885410793, type: 2}

@@ -8323,6 +8323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volume: 0
+  buttonClickSound: {fileID: 8300000, guid: d54bd1a42cdb96940ac7ab50f69552ee, type: 3}
   musicText: {fileID: 1840920758655421454}
 --- !u!1 &8408120751134427773
 GameObject:
