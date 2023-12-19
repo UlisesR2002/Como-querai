@@ -31,7 +31,7 @@ public class BulletController : MonoBehaviour
 
         if (damagePlayer && collision.gameObject.TryGetComponent(out PlayerController p))
         {
-            audioSource.PlayOneShot(hitSoundPlayer);
+            //audioSource.PlayOneShot(hitSoundPlayer);
             p.TakeDamage(damage);
             p.isHurt();
             Destroy(gameObject);
@@ -44,7 +44,7 @@ public class BulletController : MonoBehaviour
 
         if(damageEnemy && collision.gameObject.TryGetComponent(out EnemyController e))
         {
-            audioSource.PlayOneShot(hitSoundEnemy);
+            //audioSource.PlayOneShot(hitSoundEnemy);
             e.TakeDamage(damage);
             e.isHurt();
             Destroy(gameObject);
@@ -53,7 +53,7 @@ public class BulletController : MonoBehaviour
 
         if (damageEntities && collision.gameObject.TryGetComponent(out Entity en))
         {
-            audioSource.PlayOneShot(hitSoundBox);
+            //audioSource.PlayOneShot(hitSoundBox);
             en.TakeDamage(damage);
             Destroy(gameObject);
             return;
