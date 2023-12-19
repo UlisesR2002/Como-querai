@@ -7,8 +7,18 @@ public class ExplosionController : MonoBehaviour
 {
     // Start is called before the first frame update
     public float damage = 1;
+
+    [Header("Audio")]
+    public AudioClip soundEffect;
+    private AudioSource audioSource;
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.PlayOneShot(soundEffect);
         Destroy(gameObject, 2.0f);
     }
 

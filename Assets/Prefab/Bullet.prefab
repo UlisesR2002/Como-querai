@@ -147,6 +147,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bfcea40a8fd34044b88c1ec9d5bff42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
+  damagePlayer: 1
+  damageEnemy: 1
+  damageEntities: 1
+  hitSoundEnemy: {fileID: 8300000, guid: 3d166826629d87a4e84d06119fb052bc, type: 3}
+  hitSoundPlayer: {fileID: 0}
+  hitSoundBox: {fileID: 0}
 --- !u!96 &1826317635655383561
 TrailRenderer:
   serializedVersion: 3

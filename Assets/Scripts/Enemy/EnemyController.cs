@@ -35,10 +35,6 @@ namespace Assets.Scripts
                     break;
 
                 case EnemyType.ChaseAndExplode:
-                    if (audioSource != null && shootSound != null)
-                    {
-                        audioSource.PlayOneShot(shootSound, 2.0f);
-                    }
                     Instantiate(explosion, this.transform.position, Quaternion.identity);
                     break;
 

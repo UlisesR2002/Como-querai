@@ -194,7 +194,7 @@ MonoBehaviour:
     (Assault)\n<size=50>by Simon Viklund\n\n<color=#3E2852><size=100>Sound used\n<color=white><size=70>Sci-fi
     Guns SFX Pack\n<size=50>by Mikael Vanninen\n<color=white><size=70>Classic Footstep
     SFX\n<size=50>by Matthew Anett\n<color=white><size=70>Explosion 2\n<size=50>by
-    D4XX"
+    D4XX\n<color=white><size=70>Big impact blood 3.WAV\n<size=50>by SuperSouper"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: da1d026feafe40540b91a80605d7b6ec, type: 2}
   m_sharedMaterial: {fileID: 4434741028820909470, guid: da1d026feafe40540b91a80605d7b6ec, type: 2}
