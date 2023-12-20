@@ -106,4 +106,15 @@ public class GunController : MonoBehaviour
 
         return false;
     }
+
+    public string GetAmmoText()
+    {
+        if (infiniteAmmo)
+        {
+            return "Infinite";
+        }
+
+
+        return ammo.ToString();
+    }
 }

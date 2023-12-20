@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5142298933960799628}
   - component: {fileID: -7516477901370829175}
   - component: {fileID: -6949924171078623987}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,6 +83,10 @@ PrefabInstance:
     - target: {fileID: 4440924034055739044, guid: 43e328bae3536a84eaca0891841b6f1d, type: 3}
       propertyPath: m_Name
       value: 7.62x51_Bullet_prefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440924034055739044, guid: 43e328bae3536a84eaca0891841b6f1d, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8949704625245647606, guid: 43e328bae3536a84eaca0891841b6f1d, type: 3}
       propertyPath: m_LocalScale.x
@@ -162,6 +166,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 7.62x51_Bullet_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 4440924034055739044, guid: 43e328bae3536a84eaca0891841b6f1d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8949704625245647606, guid: 43e328bae3536a84eaca0891841b6f1d, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.5
@@ -239,6 +247,10 @@ PrefabInstance:
     - target: {fileID: 4440924034055739044, guid: 43e328bae3536a84eaca0891841b6f1d, type: 3}
       propertyPath: m_Name
       value: 7.62x51_Bullet_prefab (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440924034055739044, guid: 43e328bae3536a84eaca0891841b6f1d, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8949704625245647606, guid: 43e328bae3536a84eaca0891841b6f1d, type: 3}
       propertyPath: m_LocalScale.x

@@ -43,7 +43,7 @@ public class PlayerController : Entity
 
     [Header("Combat")]
     [SerializeField] private bool aim;
-    [SerializeField] private GunController activeGun;
+    public GunController activeGun;
     [SerializeField] private List<GunController> guns;
 
     [Header("Regen")]
@@ -306,6 +306,15 @@ public class PlayerController : Entity
             {
                 Debug.LogError("Municion sin el script de municion!!!");
             }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Stair"))
+        {
+            stair = true;
+            rb.useGravity = false;
         }
     }
 
