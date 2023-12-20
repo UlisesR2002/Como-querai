@@ -989,7 +989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea299015a1773d847849abdd6c950710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunTag: 
+  gunTag: Sniper
   gunModel:
   - {fileID: 3321927366361740884}
   - {fileID: 7303224999882494535}
@@ -6915,7 +6915,7 @@ GameObject:
   - component: {fileID: 2496214566672026615}
   m_Layer: 7
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7740,7 +7740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea299015a1773d847849abdd6c950710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunTag: 
+  gunTag: Pistol
   gunModel: []
   bulletPrefab: {fileID: 5026702125971175047, guid: cd38308f95e174a46a00a6fe64032954, type: 3}
   pivot: {fileID: 6218178768533783595}
@@ -7898,7 +7898,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.3255203, y: -0.024, z: -8.831}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7952014016512335247}
   - {fileID: 3687053849118274903}
@@ -7938,7 +7938,7 @@ MonoBehaviour:
   minFOV: 60
   maxFOV: 80
   speed: 10
-  jumpForce: 3
+  jumpForce: 7
   grounded: 0
   groundLayer:
     serializedVersion: 2
@@ -8091,7 +8091,7 @@ GameObject:
   - component: {fileID: 6267761254714641068}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8152,7 +8152,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 887
+    m_Bits: 1911
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -9160,7 +9160,7 @@ GameObject:
   - component: {fileID: 2793779213613156278}
   m_Layer: 0
   m_Name: Colider Pivot
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
