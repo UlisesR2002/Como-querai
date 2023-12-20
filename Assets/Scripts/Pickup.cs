@@ -30,10 +30,9 @@ public class Pickup : MonoBehaviour
             switch(type)
             {
                 case PickupType.RifleAmmo:
-                    gunController.ammo += amount;
+                    p.GiveAmmo("Sniper", amount);
                     break;
             }
-
             Destroy(gameObject);
             return;
         }

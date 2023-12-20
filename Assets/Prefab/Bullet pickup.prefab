@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5142298933960799628}
   - component: {fileID: -7516477901370829175}
   - component: {fileID: -6949924171078623987}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Bullet pickup
-  m_TagString: Untagged
+  m_TagString: Ammo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4440924034055739044, guid: 43e328bae3536a84eaca0891841b6f1d, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8949704625245647606, guid: 43e328bae3536a84eaca0891841b6f1d, type: 3}
       propertyPath: m_LocalScale.x
@@ -168,7 +168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4440924034055739044, guid: 43e328bae3536a84eaca0891841b6f1d, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8949704625245647606, guid: 43e328bae3536a84eaca0891841b6f1d, type: 3}
       propertyPath: m_LocalScale.x
@@ -250,7 +250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4440924034055739044, guid: 43e328bae3536a84eaca0891841b6f1d, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8949704625245647606, guid: 43e328bae3536a84eaca0891841b6f1d, type: 3}
       propertyPath: m_LocalScale.x
