@@ -11,7 +11,21 @@ public class CompanionScript : MonoBehaviour
 
     public TextMeshPro messageText;
 
-    private bool mensajeMostrado = false;
+    public string message;
+    private bool showMessages = false;
+
+    public AudioClip meowSound;
+    private AudioSource audioSource;
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        messageText.text = message;
+        audioSource.PlayOneShot(meowSound);
+    }
 
     void Update()
     {
@@ -33,22 +47,19 @@ public class CompanionScript : MonoBehaviour
 
                 // Mueve al compañero hacia la posición relativa
                 transform.Translate(Vector3.forward * speed * Time.deltaTime);
-
-                // Si el mensaje aún no se ha mostrado, muéstralo
-                if (!mensajeMostrado)
-                {
-                    if (messageText != null)
-                    {
-                        messageText.text = "Here is a clue for you";
-                        mensajeMostrado = true;
-                    }
-                }
             }
             // Restablece el mensaje si el compañero está cerca del jugador
             else
             {
-                mensajeMostrado = false;
+                transform.LookAt(player.position);
+                showMessages = false;
             }
         }
+    }
+
+    public void ChangeMessage(string message)
+    {
+        messageText.text = message;
+        audioSource.PlayOneShot(meowSound);
     }
 }
