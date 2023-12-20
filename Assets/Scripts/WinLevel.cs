@@ -15,7 +15,7 @@ public class WinLevel : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out PlayerController _))
         {
             //this is final level
-            if (thisLevel >= 5)
+            if (thisLevel >= 4)
             {
                 //Go to win scene
                 TransitionController.transitionController.StartTransition("Main menu");

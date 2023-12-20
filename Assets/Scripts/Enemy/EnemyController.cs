@@ -9,6 +9,7 @@ namespace Assets.Scripts
         public EnemyType enemyType;
         public float stayDistance = 15f;
         public float chaseDistance = 4f;
+        public float chaseSpeed = 4f;
         public float escapeDistance = 10;
 
 
@@ -126,7 +127,7 @@ namespace Assets.Scripts
                             }
                             else
                             {
-                                this.transform.Translate(4f * Time.deltaTime * Vector3.forward);
+                                this.transform.Translate(chaseSpeed * Time.deltaTime * Vector3.forward);
                                 Vector3 lookAtDirection = Vector3.ProjectOnPlane(player.position - transform.position, Vector3.up);
                                 this.transform.rotation = Quaternion.LookRotation(lookAtDirection);
                             }

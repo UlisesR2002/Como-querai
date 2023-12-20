@@ -70,8 +70,14 @@ public class GunController : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(direction);
 
             //Recoil
-            Vector3 newAngle =  PlayerController.instance.cameraObject.transform.rotation.eulerAngles;
-            PlayerController.instance.cameraObject.transform.rotation = Quaternion.Euler(newAngle);
+            Vector3 newPlayerAngle = PlayerController.instance.transform.rotation.eulerAngles;
+            Vector3 newCameraAngle =  PlayerController.instance.cameraObject.transform.rotation.eulerAngles;
+
+            newPlayerAngle.y += Random.Range(-1f, 1f);
+            newCameraAngle.x += Random.Range(-2.5f, -1f);
+
+            PlayerController.instance.transform.rotation = Quaternion.Euler(newPlayerAngle);
+            PlayerController.instance.cameraObject.transform.rotation = Quaternion.Euler(newCameraAngle);
 
             GameObject go = Instantiate(bulletPrefab, from, rotation);
             if (audioSource != null && shootMainSound != null)
