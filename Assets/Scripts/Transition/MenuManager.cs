@@ -10,6 +10,21 @@ public class MenuManager : MonoBehaviour
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
     }
+
+    public void NewGame()
+    {
+        audioSource.PlayOneShot(buttonClickSound);
+        SaveManager.SetLevel(1);
+        TransitionController.transitionController.StartTransition("Nivel " + 1.ToString());
+    }
+
+    public void ResumeGame()
+    {
+        audioSource.PlayOneShot(buttonClickSound);
+        TransitionController.transitionController.StartTransition("Nivel " + SaveManager.GetLevel().ToString());
+    }
+
+
     public void GoToScene(string sceneName)
     {
         audioSource.PlayOneShot(buttonClickSound);

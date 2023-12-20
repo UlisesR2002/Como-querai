@@ -22,7 +22,6 @@ public class MusicController : MonoBehaviour
             Start();
     }
 
-
     AudioClip GetMusic()
     {
         int i = Random.Range(0, musicClip.Length);
