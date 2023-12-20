@@ -125,6 +125,9 @@ MonoBehaviour:
   maxHP: 3
   hp: 0
   enemyType: 0
+  stayDistance: 15
+  chaseDistance: 4
+  escapeDistance: 10
   bullet: {fileID: 3875551599528629013, guid: cd38308f95e174a46a00a6fe64032954, type: 3}
   gunpivot: {fileID: 6487219181694691121}
   deadparticles: {fileID: 342046465062090554, guid: 1f56bb541cd500f4ca133a87fefc1bb8, type: 3}

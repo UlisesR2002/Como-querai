@@ -13,6 +13,7 @@ public class VolumeManager : MonoBehaviour
     {
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
+        Volume = PlayerPrefs.GetFloat("volume", 0.5f);
     }
     private void Update()
     {
@@ -24,10 +25,16 @@ public class VolumeManager : MonoBehaviour
     {
         audioSource.PlayOneShot(buttonClickSound);
         Volume = Mathf.Clamp((Volume + volumeDifference),0f,1f);
+        PlayerPrefs.SetFloat("volume", Volume);
     }
 
     public void SetVolumeText()
     {
         musicText.text = "Volume %" + Mathf.Round(Volume * 100);
+    }
+
+    public static float GetVolume()
+    {
+        return Volume * Volume;
     }
 }

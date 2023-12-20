@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1359394552589062861}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.009, y: 0.4966, z: 0.712}
+  m_LocalPosition: {x: -0.009, y: 0.4966, z: 0.743}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -157,6 +157,9 @@ MonoBehaviour:
   maxHP: 3
   hp: 0
   enemyType: 2
+  stayDistance: 15
+  chaseDistance: 4
+  escapeDistance: 10
   bullet: {fileID: 3875551599528629013, guid: cd38308f95e174a46a00a6fe64032954, type: 3}
   gunpivot: {fileID: 3765795154091895511}
   deadparticles: {fileID: 342046465062090554, guid: 1f56bb541cd500f4ca133a87fefc1bb8, type: 3}

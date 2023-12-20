@@ -65,6 +65,10 @@ public class GunController : MonoBehaviour
             // Calcula la rotación hacia esa dirección
             Quaternion rotation = Quaternion.LookRotation(direction);
 
+            //Recoil
+            Vector3 newAngle =  PlayerController.instance.cameraObject.transform.rotation.eulerAngles;
+            PlayerController.instance.cameraObject.transform.rotation = Quaternion.Euler(newAngle);
+
             GameObject go = Instantiate(bulletPrefab, from, rotation);
             if (audioSource != null && shootMainSound != null)
             {
