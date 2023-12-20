@@ -11104,6 +11104,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7554223435787489719, guid: 3ed306dd3d9e6fd49a893a8a27896856, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14571,6 +14575,14 @@ PrefabInstance:
       propertyPath: gunController
       value: 
       objectReference: {fileID: 566017048}
+    - target: {fileID: 1208276555727768108, guid: 7d8413b922850cf4889cca5cbdf0f907, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312074142790424159, guid: 7d8413b922850cf4889cca5cbdf0f907, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5142298933960799628, guid: 7d8413b922850cf4889cca5cbdf0f907, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.32
@@ -14614,6 +14626,14 @@ PrefabInstance:
     - target: {fileID: 6126160731159713669, guid: 7d8413b922850cf4889cca5cbdf0f907, type: 3}
       propertyPath: m_Name
       value: Bullet pickup (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126160731159713669, guid: 7d8413b922850cf4889cca5cbdf0f907, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7357647712573317323, guid: 7d8413b922850cf4889cca5cbdf0f907, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15625,7 +15645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7856301084705849988, guid: 665a2c80893a09940a8f8f188929184d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.378
+      value: 9.57
       objectReference: {fileID: 0}
     - target: {fileID: 7856301084705849988, guid: 665a2c80893a09940a8f8f188929184d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15633,7 +15653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7856301084705849988, guid: 665a2c80893a09940a8f8f188929184d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.91
+      value: -10.45
       objectReference: {fileID: 0}
     - target: {fileID: 7856301084705849988, guid: 665a2c80893a09940a8f8f188929184d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -28871,6 +28891,14 @@ PrefabInstance:
       propertyPath: gunController
       value: 
       objectReference: {fileID: 566017048}
+    - target: {fileID: 1208276555727768108, guid: 7d8413b922850cf4889cca5cbdf0f907, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312074142790424159, guid: 7d8413b922850cf4889cca5cbdf0f907, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5142298933960799628, guid: 7d8413b922850cf4889cca5cbdf0f907, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.9206448
@@ -28914,6 +28942,14 @@ PrefabInstance:
     - target: {fileID: 6126160731159713669, guid: 7d8413b922850cf4889cca5cbdf0f907, type: 3}
       propertyPath: m_Name
       value: Bullet pickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126160731159713669, guid: 7d8413b922850cf4889cca5cbdf0f907, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7357647712573317323, guid: 7d8413b922850cf4889cca5cbdf0f907, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -43660,6 +43696,14 @@ PrefabInstance:
       propertyPath: gunController
       value: 
       objectReference: {fileID: 566017048}
+    - target: {fileID: 1208276555727768108, guid: 7d8413b922850cf4889cca5cbdf0f907, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312074142790424159, guid: 7d8413b922850cf4889cca5cbdf0f907, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5142298933960799628, guid: 7d8413b922850cf4889cca5cbdf0f907, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.32
@@ -43703,6 +43747,14 @@ PrefabInstance:
     - target: {fileID: 6126160731159713669, guid: 7d8413b922850cf4889cca5cbdf0f907, type: 3}
       propertyPath: m_Name
       value: Bullet pickup (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126160731159713669, guid: 7d8413b922850cf4889cca5cbdf0f907, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7357647712573317323, guid: 7d8413b922850cf4889cca5cbdf0f907, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
