@@ -257,7 +257,7 @@ public class PlayerController : Entity
     {
         if (!isPaused)
         {
-            // Reproducir sonido de caminar si el jugador se está moviendo hacia adelante o hacia atrás y está en el suelo
+            // Reproducir sonido de caminar si el player se está moviendo hacia adelante o hacia atrás y está en el suelo
             if (grounded && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && !walkAudioSource.isPlaying)
             {
                 walkAudioSource.clip = walkSound;

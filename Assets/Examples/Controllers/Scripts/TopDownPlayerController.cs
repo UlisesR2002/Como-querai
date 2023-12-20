@@ -45,7 +45,7 @@ public class TopDownPlayerController : MonoBehaviour
 
     private void Update()
     {
-        // Movimiento del jugador
+        // Movimiento del player
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
@@ -53,7 +53,7 @@ public class TopDownPlayerController : MonoBehaviour
         movementDirection.y = 0f;
         movementDirection.Normalize();
 
-        // Rotación del jugador
+        // Rotación del player
         if (movementDirection != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
@@ -82,7 +82,7 @@ public class TopDownPlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Aplicar movimiento al jugador
+        // Aplicar movimiento al player
         rb.velocity = movementDirection * movementSpeed;
 
         // Mover la cámara suavemente hacia la posición objetivo

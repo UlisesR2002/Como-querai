@@ -21,7 +21,7 @@ public class FPSPlayerController : MonoBehaviour
 
     private void Update()
     {
-        // Movimiento del jugador
+        // Movimiento del player
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
