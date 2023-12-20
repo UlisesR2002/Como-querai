@@ -37,6 +37,10 @@ public class GunController : MonoBehaviour
         }
         delayer = new(bulletDelay);
     }
+    private void Update()
+    {
+        audioSource.volume = VolumeManager.GetVolume();
+    }
 
     public void TryShoot(Vector3 where)
     {

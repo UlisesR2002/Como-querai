@@ -8,6 +8,7 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.volume = VolumeManager.GetVolume();
         audioSource.playOnAwake = false;
     }
 

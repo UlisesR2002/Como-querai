@@ -23,6 +23,7 @@ public class VolumeManager : MonoBehaviour
 
     public void VolumeChange(float volumeDifference)
     {
+        audioSource.volume = VolumeManager.GetVolume();
         audioSource.PlayOneShot(buttonClickSound);
         Volume = Mathf.Clamp((Volume + volumeDifference),0f,1f);
         PlayerPrefs.SetFloat("volume", Volume);

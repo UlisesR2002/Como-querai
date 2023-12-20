@@ -53,8 +53,12 @@ public class PlayerController : Entity
     [Header("Audio")]
     public AudioClip walkSound;
     public AudioClip pauseSound;
+    public AudioClip ammoSound;
+    public AudioClip jumpSound;
     private AudioSource walkAudioSource;
     private AudioSource pauseAudioSource;
+    private AudioSource ammoAudioSource;
+    private AudioSource jumpAudioSource;
     [SerializeField] private float walkVolume = 0.5f;
 
 
@@ -68,6 +72,11 @@ public class PlayerController : Entity
 
         walkAudioSource = gameObject.AddComponent<AudioSource>();
         pauseAudioSource = gameObject.AddComponent<AudioSource>();
+        ammoAudioSource = gameObject.AddComponent<AudioSource>();
+        jumpAudioSource = gameObject.AddComponent<AudioSource>();
+
+
+
         walkAudioSource.volume = walkVolume;
         walkAudioSource.loop = true;
     }
@@ -79,6 +88,11 @@ public class PlayerController : Entity
     // Update is called once per frame
     public override void OnUpdate()
     {
+        walkAudioSource.volume = VolumeManager.GetVolume();
+        pauseAudioSource.volume = VolumeManager.GetVolume();
+        ammoAudioSource.volume = VolumeManager.GetVolume();
+        jumpAudioSource.volume = VolumeManager.GetVolume();
+
         grounded = Physics.Raycast(transform.position, Vector3.down, out RaycastHit _, 1.5f, groundLayer);
 
         MoveAndRotate();
@@ -241,6 +255,10 @@ public class PlayerController : Entity
         if (Input.GetButton("Jump") && grounded && !stair)
         {
             velocity.y = jumpForce;
+            if (!jumpAudioSource.isPlaying)
+            {
+                jumpAudioSource.PlayOneShot(jumpSound);
+            }
         }
 
         rb.velocity = velocity;
@@ -279,6 +297,8 @@ public class PlayerController : Entity
 
     public void GiveAmmo(string tag, int ammo)
     {
+        ammoAudioSource.volume = 1;
+        ammoAudioSource.PlayOneShot(ammoSound);
         foreach (var gun in guns)
         {
             if (gun.gunTag == tag)

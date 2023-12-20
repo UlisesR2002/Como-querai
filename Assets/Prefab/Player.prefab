@@ -7938,7 +7938,7 @@ MonoBehaviour:
   minFOV: 60
   maxFOV: 80
   speed: 10
-  jumpForce: 7
+  jumpForce: 3
   grounded: 0
   groundLayer:
     serializedVersion: 2
@@ -7954,6 +7954,8 @@ MonoBehaviour:
   regenRate: 0
   walkSound: {fileID: 8300000, guid: 4544cd1f9b0d00a498e3602ecfffcacc, type: 3}
   pauseSound: {fileID: 8300000, guid: d54bd1a42cdb96940ac7ab50f69552ee, type: 3}
+  ammoSound: {fileID: 8300000, guid: e1b04912009418e46ab68050905def6b, type: 3}
+  jumpSound: {fileID: 8300000, guid: 9a7a2d7c3f0efa7408e14bd09744808d, type: 3}
   walkVolume: 0.5
 --- !u!54 &7554223435787489719
 Rigidbody:
@@ -7974,7 +7976,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1

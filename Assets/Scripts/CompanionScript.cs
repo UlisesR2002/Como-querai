@@ -23,12 +23,12 @@ public class CompanionScript : MonoBehaviour
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
-        messageText.text = message;
-        audioSource.PlayOneShot(meowSound);
+        ChangeMessage(message);
     }
 
     void Update()
     {
+        audioSource.volume = VolumeManager.GetVolume();
         if (player != null)
         {
             Vector3 direction = player.position - transform.position;

@@ -78,6 +78,8 @@ namespace Assets.Scripts
 
         public override void OnUpdate()
         {
+            audioSource.volume = VolumeManager.GetVolume();
+
             Vector3 distance = this.gunpivot.position - player.position;
             distance.y = 0;
             if (Physics.Linecast(this.gunpivot.position, player.transform.position, out RaycastHit hit, -1))

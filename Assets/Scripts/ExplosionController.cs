@@ -18,6 +18,7 @@ public class ExplosionController : MonoBehaviour
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
+        audioSource.volume = VolumeManager.GetVolume();
         audioSource.PlayOneShot(soundEffect);
         Destroy(gameObject, 2.0f);
     }
