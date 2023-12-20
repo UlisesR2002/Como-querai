@@ -130,13 +130,13 @@ namespace Assets.Scripts
                         case EnemyType.EscapeAndShoot:
                             if (distance.magnitude > 10)
                             {
-                                isShoot = true;
+                                isShoot = false;
                                 Vector3 lookAtDirection = Vector3.ProjectOnPlane(player.position - transform.position, Vector3.up);
                                 this.transform.rotation = Quaternion.LookRotation(lookAtDirection);
                             }
                             else
                             {
-                                isShoot = false;
+                                isShoot = true;
                                 this.transform.Translate(Vector3.back * 10f * Time.deltaTime);
                                 Vector3 lookAtDirection = Vector3.ProjectOnPlane(player.position - transform.position, Vector3.up);
                                 this.transform.rotation = Quaternion.LookRotation(lookAtDirection);
