@@ -299,6 +299,19 @@ public class PlayerController : Entity
         {
             OnDead();
         }
+
+        if (other.CompareTag("Ammo"))
+        {
+            if (other.gameObject.TryGetComponent(out Ammo a))
+            {
+                GiveAmmo(a.gunTag, a.ammo);
+                Destroy(a.gameObject);
+            }
+            else
+            {
+                Debug.LogError("Municion sin el script de municion!!!");
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other)
