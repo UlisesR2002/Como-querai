@@ -7,6 +7,10 @@ namespace Assets.Scripts
     {
         [Header("Type Enemy")]
         public EnemyType enemyType;
+        public float stayDistance = 15f;
+        public float chaseDistance = 4f;
+        public float escapeDistance = 10;
+
 
         [Header("Game Object")]
         private Transform player;
@@ -69,24 +73,24 @@ namespace Assets.Scripts
                     StartCoroutine(shoot());
                     break;
             }
-            
+
         }
 
         public override void OnUpdate()
         {
-            RaycastHit hit;
-            Vector3 distance = this.transform.position - player.position;
+            Vector3 distance = this.gunpivot.position - player.position;
             distance.y = 0;
-            if (Physics.Linecast(this.transform.position, player.transform.position, out hit, -1))
+            if (Physics.Linecast(this.gunpivot.position, player.transform.position, out RaycastHit hit, -1))
             {
-                
-                if(hit.transform.CompareTag("Player"))
+                            Debug.Log("DISTANCE TO PLAYER " + distance.magnitude);
+                if (hit.transform.CompareTag("Player"))
                 {
                     switch (enemyType)
                     {
                         case EnemyType.StayAndShoot:
 
-                            if (distance.magnitude > 15)
+
+                            if (distance.magnitude > stayDistance)
                             {
                                 isShoot = false;
                             }
@@ -100,12 +104,11 @@ namespace Assets.Scripts
 
                         case EnemyType.ChaseAndExplode:
                             // Define una distancia límite para detonar la explosión
-                            float explosionDistanceLimit = 4f;
-                            if (distance.magnitude < explosionDistanceLimit)
+                            if (distance.magnitude < chaseDistance)
                             {
 
                                 float yDifference = Mathf.Abs(player.position.y - transform.position.y);
-                                float yDifferenceLimit = 4f; 
+                                float yDifferenceLimit = 4f;
 
                                 if (yDifference < yDifferenceLimit)
                                 {
@@ -121,14 +124,14 @@ namespace Assets.Scripts
                             }
                             else
                             {
-                                this.transform.Translate(Vector3.forward * 4f * Time.deltaTime);
+                                this.transform.Translate(4f * Time.deltaTime * Vector3.forward);
                                 Vector3 lookAtDirection = Vector3.ProjectOnPlane(player.position - transform.position, Vector3.up);
                                 this.transform.rotation = Quaternion.LookRotation(lookAtDirection);
                             }
                             break;
 
                         case EnemyType.EscapeAndShoot:
-                            if (distance.magnitude > 10)
+                            if (distance.magnitude > escapeDistance)
                             {
                                 isShoot = false;
                                 Vector3 lookAtDirection = Vector3.ProjectOnPlane(player.position - transform.position, Vector3.up);
@@ -193,5 +196,32 @@ namespace Assets.Scripts
             ChaseAndExplode,
             EscapeAndShoot
         }
+
+
+        private void OnDrawGizmosSelected()
+        {
+            float radius = 0f;
+            switch (enemyType)
+            {
+                case EnemyType.StayAndShoot:
+                    radius = stayDistance;
+                    break;
+                case EnemyType.ChaseAndExplode:
+                    radius = chaseDistance;
+                    break;
+                case EnemyType.EscapeAndShoot:
+                    radius = escapeDistance;
+                    break;
+                default:
+                    break;
+            }
+
+            Gizmos.DrawWireSphere(transform.position, radius);
+
+            if(player != null)
+                Gizmos.DrawLine(gunpivot.position, player.transform.position);
+        }
+
+        
     }
 }

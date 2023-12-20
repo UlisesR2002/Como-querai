@@ -295,7 +295,12 @@ public class PlayerController : Entity
             rb.useGravity = false;
         }
 
-        if(other.CompareTag("Ammo"))
+        if (other.CompareTag("Die"))
+        {
+            OnDead();
+        }
+
+        if (other.CompareTag("Ammo"))
         {
             if (other.TryGetComponent(out Ammo a))
             {
